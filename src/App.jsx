@@ -1,9 +1,9 @@
 import "./App.css";
-import Main from "./components/Main/main";
-import Header from "./components/Header/header";
-import BrowsePopup from "./components/popups/Browse/browse";
-import NewCardPopup from "./components/popups/NewCard/newCard";
-import ExitPopup from "./components/popups/Exit/exit";
+import Header from "./components/header/Header";
+import BrowsePopup from "./components/popups/browse/Browse";
+import NewCardPopup from "./components/popups/newCard/NewCard";
+import ExitPopup from "./components/popups/exit/Exit";
+import Main from "./components/main/Main";
 function App() {
   return (
     <div className="wrapper">

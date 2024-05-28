@@ -1,4 +1,4 @@
-import Card from "../Card/card";
+import Card from "../card/Card";
 
 const Column = ({ title }) => {
   return (

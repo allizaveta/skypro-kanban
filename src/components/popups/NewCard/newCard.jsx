@@ -1,4 +1,4 @@
-import Calendar from "../../Calendar/calendar";
+import Calendar from "../../calendar/Calendar";
 
 const NewCardPopup = () => {
   return (
@@ -26,7 +26,7 @@ const NewCardPopup = () => {
                     name="name"
                     id="formTitle"
                     placeholder="Введите название задачи..."
-                    autofocus=""
+                    autoFocus=""
                   />
                 </div>
                 <div className="form-new__block">

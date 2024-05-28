@@ -1,4 +1,4 @@
-import Column from "../Column/column";
+import Column from "../column/Column";
 
 const Main = () => {
   return (
