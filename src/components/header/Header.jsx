@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from "../dropdown/Dropdown.jsx";
+import React, { useState } from "react";
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
+export const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const Header = () => {
+  const handleDropdown = () => {
+    setIsOpen((prevState) => !prevState);
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -25,9 +25,25 @@ const Header = () => {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <StrictMode>
-              <App />
-            </StrictMode>
+            <a onClick={handleDropdown} className="header__user _hover02">
+              Ivan Ivanov
+            </a>
+            {isOpen && (
+              <div
+                className={"header__pop-user-set pop-user-set "}
+                id="user-set-target"
+              >
+                <p className="pop-user-set__name">Ivan Ivanov</p>
+                <p className="pop-user-set__mail">ivan.ivanov@gmail.com</p>
+                <div className="pop-user-set__theme">
+                  <p>Темная тема</p>
+                  <input type="checkbox" className="checkbox" name="checkbox" />
+                </div>
+                <button type="button" className="_hover03">
+                  <a href="#popExit">Выйти</a>
+                </button>
+              </div>
+            )}
           </nav>
         </div>
       </div>

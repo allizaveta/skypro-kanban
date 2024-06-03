@@ -7,11 +7,9 @@ import Main from "./components/main/Main";
 function App() {
   return (
     <div className="wrapper">
-      {/* pop-up start*/}
       <ExitPopup />
       <NewCardPopup />
       <BrowsePopup />
-      {/* pop-up end*/}
       <Header />
       <Main />
     </div>
