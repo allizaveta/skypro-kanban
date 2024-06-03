@@ -2,25 +2,19 @@ import React, { useState } from "react";
 
 function App() {
   const [isOpen, setOpen] = useState(false);
-
+  const toggleDropdown = () => {
+    setOpen((prevState) => !prevState);
+  };
   return (
     <div>
-      <button
-        className="header__user _hover02"
-        onClick={() => setOpen(!isOpen)}
-      >
+      <a onClick={toggleDropdown} className="header__user _hover02">
         Ivan Ivanov
-      </button>
-      ;
-      <nav
-        className={`${
-          isOpen
-            ? "pop-user-set:target pop-user-set "
-            : "header__pop-user-set pop-user-set "
-        }`}
-        id="user-set-target"
-      >
-        <ul>
+      </a>
+      {isOpen && (
+        <ul
+          className={"header__pop-user-set pop-user-set "}
+          id="user-set-target"
+        >
           <li className="pop-user-set__name">Ivan Ivanov</li>
           <li className="pop-user-set__mail">ivan.ivanov@gmail.com</li>
           <div className="pop-user-set__theme">
@@ -31,7 +25,7 @@ function App() {
             <a href="#popExit">Выйти</a>
           </button>
         </ul>
-      </nav>
+      )}
     </div>
   );
 }
