@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-function App() {
+export default function App() {
   const [isOpen, setOpen] = useState(false);
   const toggleDropdown = () => {
     setOpen((prevState) => !prevState);
   };
   return (
-    <div>
+    <div className="App">
       <a onClick={toggleDropdown} className="header__user _hover02">
         Ivan Ivanov
       </a>
@@ -29,8 +29,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
-/* .pop-user-set:target */
-
-/* "header__pop-user-set pop-user-set" */

@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 import App from "../dropdown/Dropdown.jsx";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
 
 const Header = () => {
   return (
@@ -20,7 +25,9 @@ const Header = () => {
             <button className="header__btn-main-new _hover01" id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </button>
-            <App />
+            <StrictMode>
+              <App />
+            </StrictMode>
           </nav>
         </div>
       </div>
