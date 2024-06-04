@@ -1,10 +1,10 @@
-const Card = ({ category, title, date }) => {
+const Card = ({ theme, title, date }) => {
   return (
     <div className="cards__item">
       <div className="cards__card card">
         <div className="card__group">
           <div className="card__theme _green">
-            <p className="_green">{category}</p>
+            <p className="_green">{theme}</p>
           </div>
           <a href="#popBrowse" target="_self">
             <div className="card__btn">
