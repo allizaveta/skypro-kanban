@@ -6,6 +6,7 @@ import ExitPopup from "./components/popups/exit/Exit";
 import Main from "./components/main/Main";
 import { useEffect, useState } from "react";
 import { cardList } from "./data";
+import { GlobalStyled, Wrapper } from "./Global.styled";
 function App() {
   const [isLoading, setLoading] = useState(true);
   const [cards, setCards] = useState(cardList);
@@ -23,13 +24,16 @@ function App() {
     setTimeout(() => setLoading(false), 2000);
   }, []);
   return (
-    <div className="wrapper">
-      <ExitPopup />
-      <NewCardPopup addCard={addCard} />
-      <BrowsePopup />
-      <Header />
-      {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
-    </div>
+    <>
+      <GlobalStyled />
+      <Wrapper>
+        <ExitPopup />
+        <NewCardPopup addCard={addCard} />
+        <BrowsePopup />
+        <Header />
+        {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
+      </Wrapper>
+    </>
   );
 }
 

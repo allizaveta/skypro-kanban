@@ -1,14 +1,16 @@
+import * as S from "./Calendar.styled";
+
 const Calendar = () => {
   return (
-    <div className="calendar__block">
-      <div className="calendar__nav">
-        <div className="calendar__month">Сентябрь 2023</div>
+    <S.CalendarBlock>
+      <S.CalendarNav>
+        <S.CalendarMonth>Сентябрь 2023</S.CalendarMonth>
         <div className="nav__actions">
           <div className="nav__action" data-action="prev">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width={6}
-              height={11}
+              width="6"
+              height="11"
               viewBox="0 0 6 11"
             >
               <path d="M5.72945 1.95273C6.09018 1.62041 6.09018 1.0833 5.72945 0.750969C5.36622 0.416344 4.7754 0.416344 4.41218 0.750969L0.528487 4.32883C-0.176162 4.97799 -0.176162 6.02201 0.528487 6.67117L4.41217 10.249C4.7754 10.5837 5.36622 10.5837 5.72945 10.249C6.09018 9.9167 6.09018 9.37959 5.72945 9.04727L1.87897 5.5L5.72945 1.95273Z" />
@@ -25,8 +27,8 @@ const Calendar = () => {
             </svg>
           </div>
         </div>
-      </div>
-      <div className="calendar__content">
+      </S.CalendarNav>
+      <S.CalendarContent>
         <div className="calendar__days-names">
           <div className="calendar__day-name">пн</div>
           <div className="calendar__day-name">вт</div>
@@ -36,7 +38,7 @@ const Calendar = () => {
           <div className="calendar__day-name -weekend-">сб</div>
           <div className="calendar__day-name -weekend-">вс</div>
         </div>
-        <div className="calendar__cells">
+        <S.CalendarCells>
           <div className="calendar__cell _other-month">28</div>
           <div className="calendar__cell _other-month">29</div>
           <div className="calendar__cell _other-month">30</div>
@@ -46,7 +48,7 @@ const Calendar = () => {
           <div className="calendar__cell _cell-day _weekend">3</div>
           <div className="calendar__cell _cell-day">4</div>
           <div className="calendar__cell _cell-day">5</div>
-          <div className="calendar__cell _cell-day ">6</div>
+          <div className="calendar__cell _cell-day">6</div>
           <div className="calendar__cell _cell-day">7</div>
           <div className="calendar__cell _cell-day _current">8</div>
           <div className="calendar__cell _cell-day _weekend">9</div>
@@ -72,15 +74,17 @@ const Calendar = () => {
           <div className="calendar__cell _cell-day">29</div>
           <div className="calendar__cell _cell-day _weekend">30</div>
           <div className="calendar__cell _other-month _weekend">1</div>
-        </div>
-      </div>
-      <input type="hidden" id="datepick_value" defaultValue="08.09.2023" />
-      <div className="calendar__period">
-        <p className="calendar__p date-end">
-          Выберите срок исполнения <span className="date-control" />.
-        </p>
-      </div>
-    </div>
+        </S.CalendarCells>
+      </S.CalendarContent>
+
+      <input type="hidden" id="datepick_value" value="08.09.2023" />
+      <S.CalendarPeriod>
+        <S.CalendarP>
+          Выберите срок исполнения
+          <span className="date-control"></span>.
+        </S.CalendarP>
+      </S.CalendarPeriod>
+    </S.CalendarBlock>
   );
 };
 
