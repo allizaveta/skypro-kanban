@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import * as S from "./Header.styled";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,26 +9,24 @@ export const Header = () => {
   };
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+    <S.Header>
+      <S.Container>
+        <S.HeaderBlock>
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="images/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </S.HeaderLogo>
+          <S.HeaderLogo>
             <a href="" target="_self">
               <img src="images/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-            <button className="header__btn-main-new _hover01" id="btnMainNew">
+          </S.HeaderLogo>
+          <S.HeaderNav>
+            <S.HeaderBtnMainNew id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
-            </button>
-            <a onClick={handleDropdown} className="header__user _hover02">
-              Ivan Ivanov
-            </a>
+            </S.HeaderBtnMainNew>
+            <S.HeaderUser onClick={handleDropdown}>Ivan Ivanov</S.HeaderUser>
             {isOpen && (
               <div
                 className={"header__pop-user-set pop-user-set "}
@@ -44,10 +43,10 @@ export const Header = () => {
                 </button>
               </div>
             )}
-          </nav>
-        </div>
-      </div>
-    </header>
+          </S.HeaderNav>
+        </S.HeaderBlock>
+      </S.Container>
+    </S.Header>
   );
 };
 
