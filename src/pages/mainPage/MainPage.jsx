@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Wrapper } from "../../Common.styled";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import ExitPage from "../exitPage/ExitPage";
 
 const MainPage = () => {
   const [isLoading, setLoading] = useState(true);
@@ -29,7 +30,7 @@ const MainPage = () => {
         <NewCardPopup addCard={addCard} />
         <Header />
         {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
-
+        <ExitPage />
         <Outlet />
       </Wrapper>
     </>

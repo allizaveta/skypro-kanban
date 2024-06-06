@@ -19,7 +19,10 @@ function App() {
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
           <Route path={RoutesPath.HOME} element={<MainPage />}>
-            <Route path={RoutesPath.EXIT} element={<ExitPage />} />
+            <Route
+              path={RoutesPath.EXIT}
+              element={<ExitPage isAuth={setAuth} />}
+            />
             <Route
               path={`${RoutesPath.VIEW_CARD}/:id`}
               element={<ViewCardPage />}
