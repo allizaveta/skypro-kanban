@@ -1,34 +1,37 @@
 import "./App.css";
-import React from "react";
+import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/mainPage/MainPage";
 import LoginPage from "./pages/loginPage/LoginPage";
 import RegisterPage from "./pages/registerPage/RegisterPage";
-import { ExitPage } from "./pages/exitPage/ExitPage";
+import ExitPage from "./pages/exitPage/ExitPage";
 import NotfoundPage from "./pages/notFoundPage/NotFoundPage";
 import ViewCardPage from "./pages/viewCardPage/ViewCardPage";
 import { GlobalStyled } from "./Global.styled";
+import RoutesPath from "./RoutesPath";
+import PrivateRoute from "./components/PrivatRoute";
 
 function App() {
-  const AppRoutes = {
-    HOME: "/",
-    EXIT: "/exit",
-    VIEW_CARD: "/card/:id",
-    LOGIN: "/login",
-    REGISTER: "/register",
-    NOT_FOUND: "*",
-  };
-
+  const [isAuth, setAuth] = useState(false);
   return (
     <>
       <GlobalStyled />
       <Routes>
-        <Route path={AppRoutes.HOME} element={<MainPage />} />
-        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-        <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
-        <Route path={AppRoutes.EXIT} element={<ExitPage />} />
-        <Route path={AppRoutes.VIEW_CARD} element={<ViewCardPage />} />
-        <Route path={AppRoutes.NOT_FOUND} element={<NotfoundPage />} />
+        <Route element={<PrivateRoute isAuth={isAuth} />}>
+          <Route path={RoutesPath.HOME} element={<MainPage />}>
+            <Route path={RoutesPath.EXIT} element={<ExitPage />} />
+            <Route
+              path={`${RoutesPath.VIEW_CARD}/:id`}
+              element={<ViewCardPage />}
+            />
+          </Route>
+        </Route>
+        <Route
+          path={RoutesPath.LOGIN}
+          element={<LoginPage login={setAuth} />}
+        />
+        <Route path={RoutesPath.REGISTER} element={<RegisterPage />} />
+        <Route path={RoutesPath.NOT_FOUND} element={<NotfoundPage />} />
       </Routes>
     </>
   );
