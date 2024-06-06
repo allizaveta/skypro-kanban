@@ -1,39 +1,35 @@
 import "./App.css";
-import Header from "./components/header/Header";
-import BrowsePopup from "./components/popups/browse/Browse";
-import NewCardPopup from "./components/popups/newCard/NewCard";
-import ExitPopup from "./components/popups/exit/Exit";
-import Main from "./components/main/Main";
-import { useEffect, useState } from "react";
-import { cardList } from "./data";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import MainPage from "./pages/mainPage/MainPage";
+import LoginPage from "./pages/loginPage/LoginPage";
+import RegisterPage from "./pages/registerPage/RegisterPage";
+import { ExitPage } from "./pages/exitPage/ExitPage";
+import NotfoundPage from "./pages/notFoundPage/NotFoundPage";
+import ViewCardPage from "./pages/viewCardPage/ViewCardPage";
 import { GlobalStyled } from "./Global.styled";
-import { Wrapper } from "./Common.styled";
+
 function App() {
-  const [isLoading, setLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
-  const addCard = () => {
-    const newCard = {
-      id: cards.length + 1,
-      topic: "Web Design",
-      title: "Название задачи",
-      date: "04.06.24",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
+  const AppRoutes = {
+    HOME: "/",
+    EXIT: "/exit",
+    VIEW_CARD: "/card/:id",
+    LOGIN: "/login",
+    REGISTER: "/register",
+    NOT_FOUND: "*",
   };
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
-  }, []);
+
   return (
     <>
       <GlobalStyled />
-      <Wrapper>
-        <ExitPopup />
-        <NewCardPopup addCard={addCard} />
-        <BrowsePopup />
-        <Header />
-        {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
-      </Wrapper>
+      <Routes>
+        <Route path={AppRoutes.HOME} element={<MainPage />} />
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoutes.REGISTER} element={<RegisterPage />} />
+        <Route path={AppRoutes.EXIT} element={<ExitPage />} />
+        <Route path={AppRoutes.VIEW_CARD} element={<ViewCardPage />} />
+        <Route path={AppRoutes.NOT_FOUND} element={<NotfoundPage />} />
+      </Routes>
     </>
   );
 }
