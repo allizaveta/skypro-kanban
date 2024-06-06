@@ -6,7 +6,8 @@ import ExitPopup from "./components/popups/exit/Exit";
 import Main from "./components/main/Main";
 import { useEffect, useState } from "react";
 import { cardList } from "./data";
-import { GlobalStyled, Wrapper } from "./Global.styled";
+import { GlobalStyled } from "./Global.styled";
+import { Wrapper } from "./Common.styled";
 function App() {
   const [isLoading, setLoading] = useState(true);
   const [cards, setCards] = useState(cardList);
