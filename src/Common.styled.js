@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div`
   max-width: 100%;
@@ -7,3 +7,26 @@ export const Wrapper = styled.div`
   overflow: hidden;
   background-color: #F1F1F1;
 `
+
+export const hover01 = css`
+    &:hover {
+        background-color: #33399b;
+    }
+`;
+
+export const hover02 = css`
+    &:hover {
+        color: #33399b;
+    }
+    &:hover::after {
+        border-left-color: #33399b;
+        border-bottom-color: #33399b;
+    }
+`;
+
+export const hover03 = css`
+    &:hover {
+        background-color: #33399b;
+        color: #FFFFFF;
+    }
+`;

@@ -22,7 +22,7 @@ const MainPage = () => {
     setCards([...cards, newCard]);
   };
   useEffect(() => {
-    setTimeout(() => setLoading(false), 200); //Вернуть потом на 2000
+    setTimeout(() => setLoading(false), 2000);
   }, []);
   return (
     <>
@@ -30,7 +30,6 @@ const MainPage = () => {
         <NewCardPopup addCard={addCard} />
         <Header />
         {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
-        <ExitPage />
         <Outlet />
       </Wrapper>
     </>

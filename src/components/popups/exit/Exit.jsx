@@ -1,32 +1,29 @@
 import { Link } from "react-router-dom";
 import RoutesPath from "../../../RoutesPath";
+import * as S from "./Exit.styled";
 
-const ExitPopup = ({ logOut }) => {
+const PopExit = () => {
   return (
-    <div className="pop-exit" id="popExit">
-      <div className="pop-exit__container">
-        <div className="pop-exit__block">
-          <div className="pop-exit__ttl">
+    <S.ExitHeader>
+      <S.PopExitCnt>
+        <S.PopExitBlock>
+          <S.PopExitTitle>
             <h2>Выйти из аккаунта?</h2>
-          </div>
+          </S.PopExitTitle>
           <form className="pop-exit__form" id="formExit" action="#">
-            <div className="pop-exit__form-group">
-              <button
-                onClick={logOut}
-                className="pop-exit__exit-yes _hover01"
-                id="exitYes"
-              >
-                Да, выйти
-              </button>
-              <button className="pop-exit__exit-no _hover03" id="exitNo">
-                <Link to={RoutesPath.HOME}>Нет, остаться</Link>{" "}
-              </button>
-            </div>
+            <S.PopExitFormGroup>
+              <S.Button $primary>
+                <Link to={RoutesPath.LOGIN}> Да, выйти </Link>
+              </S.Button>
+              <S.Button>
+                <Link to={RoutesPath.HOME}>Нет, остаться</Link>
+              </S.Button>
+            </S.PopExitFormGroup>
           </form>
-        </div>
-      </div>
-    </div>
+        </S.PopExitBlock>
+      </S.PopExitCnt>
+    </S.ExitHeader>
   );
 };
 
-export default ExitPopup;
+export default PopExit;
