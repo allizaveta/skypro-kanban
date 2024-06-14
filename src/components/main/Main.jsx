@@ -10,7 +10,7 @@ const Main = ({ cards }) => {
           <S.MainContent>
             {statusList.map((status) => (
               <Column
-                key={status}
+                key={status.id}
                 title={status}
                 cardList={cards.filter((card) => card.status === status)}
               />

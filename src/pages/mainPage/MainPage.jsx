@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { Wrapper } from "../../Common.styled";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { getTasks } from "../../api";
 
 const MainPage = () => {
   const [isLoading, setLoading] = useState(true);
@@ -21,8 +22,16 @@ const MainPage = () => {
     setCards([...cards, newCard]);
   };
   useEffect(() => {
-    setTimeout(() => setLoading(false), 2000);
+    setTimeout(() => setLoading(false), 20); //на 2000
   }, []);
+
+  useEffect(() => {
+    getTasks().then((data) => {
+      setCards(data.tasks);
+      console.log(data);
+    });
+  }, []);
+
   return (
     <>
       <Wrapper>
