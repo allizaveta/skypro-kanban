@@ -13,12 +13,13 @@ import PrivateRoute from "./components/PrivatRoute";
 
 function App() {
   const [isAuth, setAuth] = useState(false);
+  const [user, setUser] = useState(null);
   return (
     <>
       <GlobalStyled />
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
-          <Route path={RoutesPath.HOME} element={<MainPage />}>
+          <Route path={RoutesPath.HOME} element={<MainPage user={user} />}>
             <Route
               path={RoutesPath.EXIT}
               element={<ExitPage isAuth={setAuth} />}
@@ -31,7 +32,7 @@ function App() {
         </Route>
         <Route
           path={RoutesPath.LOGIN}
-          element={<LoginPage login={setAuth} />}
+          element={<LoginPage setAuth={setAuth} setUser={setUser} />}
         />
         <Route path={RoutesPath.REGISTER} element={<RegisterPage />} />
         <Route path={RoutesPath.NOT_FOUND} element={<NotfoundPage />} />

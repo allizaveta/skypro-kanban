@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { hover01 } from "../../Common.styled";
 
 export const Background = styled.div`
   display: block;
@@ -54,10 +55,6 @@ export const BlockTtl = styled.div`
 
 export const BlockInputForm = styled.form`
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const BlockInput = styled.input`
@@ -79,7 +76,7 @@ export const BlockInput = styled.input`
   }
 `;
 
-export const BlockBtnEnter = styled.span`
+export const BlockBtnEnter = styled.button`
   width: 100%;
   height: 30px;
   background-color: #565eef;
@@ -94,9 +91,8 @@ export const BlockBtnEnter = styled.span`
   font-weight: 500;
   letter-spacing: -0.14px;
   color: #ffffff;
-  :hover {
-    background-color: #33399b;
-  }
+  border: none;
+  ${hover01}
 
   @media screen and (max-width: 375px) {
     height: 40px;
@@ -139,3 +135,13 @@ export const InlineFormLink = styled.span`
     color: rgba(148, 166, 190, 0.4);
   }
 `;
+
+export const BlockError = styled.p`
+font-family: Arial;
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+text-align: center;
+color: red;
+margin-top: 7px;
+`

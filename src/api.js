@@ -7,9 +7,45 @@ export async function getTasks() {
             Authorization: `Bearer ${token}`,
         },
     });
-    if (!response.ok) {
+    if (!response.status === 200) {
         throw new Error("Ошибка");
     };
     const data = await response.json();
     return data;
+}
+
+export async function signup({ name, login, password }) {
+    return fetch(URL, {
+        method: "POST",
+        body: JSON.stringify({
+            login,
+            name,
+            password,
+        }),
+    }).then((response) => {
+        if (response.status === 400) {
+            throw new Error("пользователь уже существует");
+        }
+        return response.json();
+    });
+}
+
+export function login({ login, password }) {
+    return fetch(URL_USER + "/login", {
+        method: "POST",
+        body: JSON.stringify({
+            login,
+            password,
+        }),
+    }).then((response) => {
+        if (response.ok) {
+            return response.json();
+        }
+        if (response.status === 400) {
+            throw new Error("Неправильный логин или пароль");
+        }
+        if (response.status === 500) {
+            throw new Error("ошибка, повторите позднее!")
+        }
+    });
 }
