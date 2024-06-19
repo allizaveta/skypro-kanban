@@ -1,16 +1,16 @@
 import Header from "../../components/header/Header";
 import NewCardPopup from "../../components/popups/newCard/NewCard";
 import Main from "../../components/main/Main";
-import { cardList } from "../../data";
 import { useEffect, useState } from "react";
 import { Wrapper } from "../../Common.styled";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
 
-const MainPage = () => {
+const MainPage = ({ user }) => {
   const [isLoading, setLoading] = useState(true);
-  const [cards, setCards] = useState(cardList);
+  const [error, setError] = useState(null);
+  const [cards, setCards] = useState([]);
   const addCard = () => {
     const newCard = {
       _id: cards.length + 1,
@@ -22,15 +22,18 @@ const MainPage = () => {
     setCards([...cards, newCard]);
   };
   useEffect(() => {
-    setTimeout(() => setLoading(false), 20); //на 2000
-  }, []);
-
-  useEffect(() => {
-    getTasks().then((data) => {
-      setCards(data.tasks);
-      console.log(data);
-    });
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await getTasks(user.token);
+        console.log("tasks:", response);
+        setCards(response.tasks);
+        setLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, [user.token]);
 
   return (
     <>

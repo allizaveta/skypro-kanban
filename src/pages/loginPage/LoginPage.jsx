@@ -55,7 +55,7 @@ const LoginPage = ({ setAuth, setUser }) => {
             <S.BlockTtl>Вход</S.BlockTtl>
             <S.BlockInputForm id="formLogIn" onSubmit={onRegister}>
               <S.BlockInput
-                type="email"
+                type="text"
                 name="email"
                 id="formlogin"
                 placeholder="Эл. почта"

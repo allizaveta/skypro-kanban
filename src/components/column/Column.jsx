@@ -8,9 +8,9 @@ const Column = ({ title, cardList }) => {
         <S.ColumnText>{title}</S.ColumnText>
       </S.ColumnTitle>
       <S.Cards>
-        {cardList.map(({ id, title, date, topic }) => {
+        {cardList.map(({ _id, title, date, topic }) => {
           return (
-            <Card key={id} id={id} topic={topic} title={title} date={date} />
+            <Card key={_id} _id={_id} topic={topic} title={title} date={date} />
           );
         })}
       </S.Cards>

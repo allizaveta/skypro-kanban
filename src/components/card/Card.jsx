@@ -3,7 +3,7 @@ import { topicHeader } from "../../data";
 import { Link } from "react-router-dom";
 import RoutesPath from "../../RoutesPath";
 
-const Card = ({ id, topic, title, date }) => {
+const Card = ({ _id, topic, title, date }) => {
   return (
     <S.CardsItem>
       <S.CardsCard>
@@ -11,7 +11,7 @@ const Card = ({ id, topic, title, date }) => {
           <S.CardTheme $themeColor={topicHeader[topic]}>
             <S.CardText>{topic}</S.CardText>
           </S.CardTheme>
-          <Link to={`${RoutesPath.VIEW_CARD}/${id}`}>
+          <Link to={`${RoutesPath.VIEW_CARD}/${_id}`}>
             <S.CardBtn>
               <div />
               <div />
