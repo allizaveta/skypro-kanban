@@ -19,7 +19,10 @@ function App() {
       <GlobalStyled />
       <Routes>
         <Route element={<PrivateRoute isAuth={isAuth} />}>
-          <Route path={RoutesPath.HOME} element={<MainPage user={user} />}>
+          <Route
+            path={RoutesPath.HOME}
+            element={<MainPage user={user} setUser={setUser} />}
+          >
             <Route
               path={RoutesPath.EXIT}
               element={<ExitPage isAuth={setAuth} />}

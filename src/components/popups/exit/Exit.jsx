@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import RoutesPath from "../../../RoutesPath";
 import * as S from "./Exit.styled";
 
-const PopExit = () => {
+const PopExit = ({ setUser }) => {
   const logOut = () => {
     setAuth(false);
     navigate(RoutesPath.LOGIN);
+    setUser(null);
   };
   return (
     <S.ExitHeader>

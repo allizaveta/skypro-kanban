@@ -8,7 +8,7 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
 import * as S from "./MainPage.styled";
 
-const MainPage = ({ user }) => {
+const MainPage = ({ user, setUser }) => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cards, setCards] = useState([]);
@@ -41,7 +41,7 @@ const MainPage = ({ user }) => {
     <>
       <Wrapper>
         <NewCardPopup addCard={addCard} />
-        <Header />
+        <Header setUser={setUser} />
         {error && <S.Text>{error}</S.Text>}
         {!error && isLoading ? (
           <S.Text>Загрузка</S.Text>
