@@ -15,7 +15,7 @@ export async function getTasks() {
 }
 
 export async function signup({ name, login, password }) {
-    return fetch(URL, {
+    return fetch(URL_USER, {
         method: "POST",
         body: JSON.stringify({
             login,
