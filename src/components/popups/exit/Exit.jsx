@@ -3,6 +3,10 @@ import RoutesPath from "../../../RoutesPath";
 import * as S from "./Exit.styled";
 
 const PopExit = () => {
+  const logOut = () => {
+    setAuth(false);
+    navigate(RoutesPath.LOGIN);
+  };
   return (
     <S.ExitHeader>
       <S.PopExitCnt>
@@ -13,7 +17,7 @@ const PopExit = () => {
           <form className="pop-exit__form" id="formExit" action="#">
             <S.PopExitFormGroup>
               <S.Button $primary>
-                <Link to={RoutesPath.LOGIN}> Да, выйти </Link>
+                <Link onClick={logOut}> Да, выйти </Link>
               </S.Button>
               <S.Button>
                 <Link to={RoutesPath.HOME}>Нет, остаться</Link>

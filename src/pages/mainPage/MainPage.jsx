@@ -6,6 +6,7 @@ import { Wrapper } from "../../Common.styled";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
+import * as S from "./MainPage.styled";
 
 const MainPage = ({ user }) => {
   const [isLoading, setLoading] = useState(true);
@@ -30,6 +31,7 @@ const MainPage = ({ user }) => {
         setLoading(false);
       } catch (error) {
         console.error(error);
+        setError("Ошибка загрузки задач");
       }
     };
     fetchData();
@@ -40,7 +42,12 @@ const MainPage = ({ user }) => {
       <Wrapper>
         <NewCardPopup addCard={addCard} />
         <Header />
-        {isLoading ? <p>Загрузка</p> : <Main cards={cards} />}
+        {error && <S.Text>{error}</S.Text>}
+        {!error && isLoading ? (
+          <S.Text>Загрузка</S.Text>
+        ) : (
+          <Main cards={cards} />
+        )}
         <Outlet />
       </Wrapper>
     </>
