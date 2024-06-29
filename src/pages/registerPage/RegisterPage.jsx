@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     name: "",
-    login: "",
+    email: "",
     password: "",
   });
 
