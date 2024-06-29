@@ -7,27 +7,29 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
 import * as S from "./MainPage.styled";
+import { useTasks } from "../../components/hooks/useTaskContext";
 
 const MainPage = ({ user, setUser }) => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cards, setCards] = useState([]);
+  const { tasks, setTasks } = useTasks();
   const addCard = () => {
     const newCard = {
-      _id: cards.length + 1,
+      _id: tasks.length + 1,
       topic: "Web Design",
       title: "Название задачи",
       date: "04.06.24",
       status: "Без статуса",
     };
-    setCards([...cards, newCard]);
+    setCards([...tasks, newCard]);
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getTasks(user.token);
         console.log("tasks:", response);
-        setCards(response.tasks);
+        setTasks(response.tasks);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -35,7 +37,7 @@ const MainPage = ({ user, setUser }) => {
       }
     };
     fetchData();
-  }, [user.token]);
+  }, [user.token, setTasks]);
 
   return (
     <>
