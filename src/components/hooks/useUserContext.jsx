@@ -1,14 +1,6 @@
-/* import { useContext } from "react";
+import { useContext } from "react";
+import { UserContext } from "../contexts/UserContext";
 
-export const UserContext = createContext(null);
-
-export function useUserContext() {
-  const user = useContext(UserContext);
-
-  if (!user) {
-    throw new Error("Данные пользователя не были найдены");
-  }
-
-  return user;
-}
- */
+export const useUser = () => {
+  return useContext(UserContext);
+};

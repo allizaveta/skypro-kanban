@@ -12,18 +12,8 @@ import { useTasks } from "../../components/hooks/useTaskContext";
 const MainPage = ({ user, setUser }) => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [cards, setCards] = useState([]);
   const { tasks, setTasks } = useTasks();
-  const addCard = () => {
-    const newCard = {
-      _id: tasks.length + 1,
-      topic: "Web Design",
-      title: "Название задачи",
-      date: "04.06.24",
-      status: "Без статуса",
-    };
-    setCards([...tasks, newCard]);
-  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,6 +29,17 @@ const MainPage = ({ user, setUser }) => {
     fetchData();
   }, [user.token, setTasks]);
 
+  const addCard = () => {
+    const newCard = {
+      _id: tasks.length + 1,
+      topic: "Web Design",
+      title: "Название задачи",
+      date: "04.06.24",
+      status: "Без статуса",
+    };
+    setTasks([...tasks, newCard]);
+  };
+
   return (
     <>
       <Wrapper>
@@ -48,7 +49,7 @@ const MainPage = ({ user, setUser }) => {
         {!error && isLoading ? (
           <S.Text>Загрузка</S.Text>
         ) : (
-          <Main cards={cards} />
+          <Main cards={tasks} />
         )}
         <Outlet />
       </Wrapper>
