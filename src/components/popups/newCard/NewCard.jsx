@@ -8,7 +8,7 @@ import { useUser } from "../../hooks/useUserContext";
 import { useTasks } from "../../hooks/useTaskContext";
 
 const NewCardPopup = () => {
-  const { userData } = useUser();
+  const { isLoggedInUser } = useUser();
   const { setTasks } = useTasks();
   const navigate = useNavigate();
 
@@ -39,7 +39,7 @@ const NewCardPopup = () => {
 
     try {
       const response = await addNewCard({
-        token: userData.token,
+        token: isLoggedInUser.token,
         title: task.title,
         topic: task.topic,
         description: task.description,
