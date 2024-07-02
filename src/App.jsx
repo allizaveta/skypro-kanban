@@ -34,6 +34,7 @@ function App() {
               path={RoutesPath.EXIT}
               element={<ExitPage isAuth={setAuth} />}
             />
+            <Route path={`${RoutesPath.NEWCARD}`}></Route>
             <Route
               path={`${RoutesPath.VIEW_CARD}/:id`}
               element={<ViewCardPage />}

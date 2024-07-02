@@ -8,11 +8,12 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
 import * as S from "./MainPage.styled";
 import { useTasks } from "../../components/hooks/useTaskContext";
+import RoutesPath from "../../RoutesPath";
 
 const MainPage = ({ user, setUser }) => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { tasks, setTasks } = useTasks();
+  const { setTasks } = useTasks();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,21 +30,10 @@ const MainPage = ({ user, setUser }) => {
     fetchData();
   }, [user.token, setTasks]);
 
-  const addCard = () => {
-    const newCard = {
-      _id: tasks.length + 1,
-      topic: "Web Design",
-      title: "Название задачи",
-      date: "04.06.24",
-      status: "Без статуса",
-    };
-    setTasks([...tasks, newCard]);
-  };
-
   return (
     <>
       <Wrapper>
-        <NewCardPopup addCard={addCard} />
+        <NewCardPopup to={RoutesPath.NEWCARD} />
         <Header setUser={setUser} />
         {error && <S.Text>{error}</S.Text>}
         {!error && isLoading ? (

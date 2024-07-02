@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from "styled-components";
 
 export const PopupContainer = styled.div`
   display: none;
@@ -124,29 +124,56 @@ export const Categories = styled.div`
   margin-bottom: 20px;
 `;
 
-export const CategoryTheme = styled.div`
+export const CategoriesTtl = styled.p`
+  margin-bottom: 14px;
+  color: #000;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+`;
+
+export const CategoriesThemeText = styled.p`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  white-space: nowrap;
+
+  ${({ $theme }) => themeStyles[$theme] || ""}
+`;
+
+export const CategoriesThemes = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
+const themeStyles = {
+  orange: css`
+    background-color: #ffe4c2;
+    color: #ff6d00;
+  `,
+  green: css`
+    background-color: #b4fdd1;
+    color: #06b16e;
+  `,
+  purple: css`
+    background-color: #e9d4ff;
+    color: #9a48f1;
+  `,
+};
+
+export const CategoriesTheme = styled.div`
   display: inline-block;
   width: auto;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
   margin-right: 7px;
-  opacity: 0.4;
+  cursor: pointer;
+  opacity: ${({ $isActive }) => ($isActive ? "1" : "0.4")};
 
-  &._orange {
-    background-color: #ffe4c2;
-    color: #ff6d00;
-  }
-
-  &._green {
-    background-color: #b4fdd1;
-    color: #06b16e;
-  }
-
-  &._purple {
-    background-color: #e9d4ff;
-    color: #9a48f1;
-  }
+  ${({ $theme }) => themeStyles[$theme] || ""}
 `;
 
 export const CreateButton = styled.button`

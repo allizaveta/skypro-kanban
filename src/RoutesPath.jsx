@@ -5,6 +5,7 @@ const RoutesPath = {
   LOGIN: "/login",
   REGISTER: "/register",
   NOT_FOUND: "*",
+  NEWCARD: "/new_card",
 };
 
 export default RoutesPath;
