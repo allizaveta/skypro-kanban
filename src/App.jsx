@@ -20,36 +20,29 @@ function App() {
     <>
       <GlobalStyled />
       <UserProvider>
-        <Routes>
-          <Route
-            element={
-              <TasksProvider>
-                <PrivateRoute isAuth={isAuth} />
-              </TasksProvider>
-            }
-          >
-            <Route
-              path={RoutesPath.HOME}
-              element={<MainPage user={user} setUser={setUser} />}
-            >
-              <Route
-                path={RoutesPath.EXIT}
-                element={<ExitPage isAuth={setAuth} />}
-              />
-              <Route path={`${RoutesPath.NEWCARD}`}></Route>
-              <Route
-                path={`${RoutesPath.VIEW_CARD}/:id`}
-                element={<ViewCardPage />}
-              />
+        <TasksProvider>
+          <Routes>
+            <Route element={<PrivateRoute isAuth={isAuth} />}>
+              <Route path={RoutesPath.HOME} element={<MainPage />}>
+                <Route
+                  path={RoutesPath.EXIT}
+                  element={<ExitPage isAuth={setAuth} />}
+                />
+                <Route path={`${RoutesPath.NEWCARD}`}></Route>
+                <Route
+                  path={`${RoutesPath.VIEW_CARD}/:id`}
+                  element={<ViewCardPage />}
+                />
+              </Route>
             </Route>
-          </Route>
-          <Route
-            path={RoutesPath.LOGIN}
-            element={<LoginPage setAuth={setAuth} setUser={setUser} />}
-          />
-          <Route path={RoutesPath.REGISTER} element={<RegisterPage />} />
-          <Route path={RoutesPath.NOT_FOUND} element={<NotfoundPage />} />
-        </Routes>
+            <Route
+              path={RoutesPath.LOGIN}
+              element={<LoginPage setAuth={setAuth} setUser={setUser} />}
+            />
+            <Route path={RoutesPath.REGISTER} element={<RegisterPage />} />
+            <Route path={RoutesPath.NOT_FOUND} element={<NotfoundPage />} />
+          </Routes>
+        </TasksProvider>
       </UserProvider>
     </>
   );

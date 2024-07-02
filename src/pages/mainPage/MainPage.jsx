@@ -3,7 +3,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import * as S from "./MainPage.styled";
 import { Wrapper } from "../../Common.styled";
-import { getTasks } from "../../api";
 import RoutesPath from "../../RoutesPath";
 import { useTasks } from "../../components/hooks/useTaskContext";
 import { useUser } from "../../components/hooks/useUserContext";
@@ -12,10 +11,10 @@ import NewCardPopup from "../../components/popups/newCard/NewCard";
 import Main from "../../components/main/Main";
 
 const MainPage = () => {
+  const { tasks, setTasks, getTasks } = useTasks();
+  const { isLoggedInUser } = useUser();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { setTasks } = useTasks();
-  const { isLoggedInUser } = useUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,7 +29,7 @@ const MainPage = () => {
       }
     };
     fetchData();
-  }, [isLoggedInUser.token, setTasks]);
+  }, [isLoggedInUser.token, setTasks, getTasks]);
 
   return (
     <>
@@ -38,11 +37,7 @@ const MainPage = () => {
         <NewCardPopup to={RoutesPath.NEWCARD} />
         <Header />
         {error && <S.Text>{error}</S.Text>}
-        {!error && isLoading ? (
-          <S.Text>Загрузка</S.Text>
-        ) : (
-          <Main cards={tasks} />
-        )}
+        {!error && isLoading ? <S.Text>Загрузка</S.Text> : <Main />}
         <Outlet />
       </Wrapper>
     </>
