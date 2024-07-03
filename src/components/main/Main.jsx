@@ -14,7 +14,7 @@ const Main = () => {
               <Column
                 key={status}
                 title={status}
-                cardList={tasks.filter((tasks) => tasks.status === status)}
+                cardList={tasks.filter((card) => card.status === status)}
               />
             ))}
           </S.MainContent>
