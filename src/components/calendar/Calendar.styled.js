@@ -1,91 +1,43 @@
+import { DayPicker } from "react-day-picker";
 import styled from "styled-components";
 
-export const CalendarBlock = styled.div`
-  width: 182px;
+export const Calendar = styled.div`
   margin-bottom: 20px;
-
-  &ttl {
-    margin-bottom: 14px;
-    padding: 0 7px;
-  }
-
-  &block {
-    display: block;
-  }
 `;
 
-export const CalendarNav = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 14px;
-  padding: 0 7px;
-`;
-
-export const CalendarMonth = styled.div`
-  color: #94a6be;
+export const CalendarTitle = styled.p`
+  margin-bottom: 14px;
+  padding-left: 21px;
+  color: #000;
   font-size: 14px;
-  line-height: 25px;
   font-weight: 600;
+  line-height: 1;
 `;
 
-export const CalendarCells = styled.div`
-  width: 182px;
-  height: 126px;
-  display: flex;
-  flex-wrap: wrap;
+export const StyledDayPicker = styled(DayPicker)`
+  /* .rdp {
+    width: 168px;
+  }
 
-  .calendar__cell {
-    width: 22px;
-    height: 22px;
-    margin: 2px;
-    border-radius: 50%;
+  .rdp-day {
+    width: 24px; 
+    height: 24px;
     display: flex;
-    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-    color: #94a6be;
-    font-size: 10px;
-    line-height: 1;
-    letter-spacing: -0.2px;
-    cursor: pointer;
-  }
+  } */
 `;
 
-
-export const CalendarContent = styled.div`
-  margin-bottom: 12px;
-
-  & .calendar__days-names {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: space-between;
-    margin: 7px 0;
-    padding: 0 7px;
-  }
-
-  & .calendar__day-name {
-    color: #94a6be;
-    font-size: 10px;
-    font-weight: 500;
-    line-height: normal;
-    letter-spacing: -0.2px;
-  }
-`;
-
-
-export const CalendarPeriod = styled.div`
-  padding: 0 7px;
-`;
-
-export const CalendarP = styled.p`
+export const CalendarTitleBottom = styled.p`
   color: #94a6be;
   font-size: 10px;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 12px;
+  padding-left: 21px;
+`;
 
-  & span {
-    color: #000000;
-  }
+export const FormatDate = styled.span`
+  color: black;
+  font-weight: 400;
+  line-height: 12px;
 `;
