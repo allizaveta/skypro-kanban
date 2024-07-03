@@ -49,3 +49,34 @@ export function login({ login, password }) {
         }
     });
 }
+
+export async function addNewCard({
+    token,
+    title,
+    topic,
+    status,
+    description,
+    date,
+}) {
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+            title,
+            topic,
+            status,
+            description,
+            date,
+        }),
+    });
+
+    if (!response.ok) {
+        throw new Error(
+            "Ошибка! Задача не может быть добавлена. Пожалуйста, проверьте правильность заполнения полей."
+        );
+    }
+    const data = await response.json();
+    return data;
+}
