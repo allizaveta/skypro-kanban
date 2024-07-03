@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RoutesPath from "../../RoutesPath.jsx";
 import { Wrapper } from "../../Common.styled.js";
 import * as S from "./LoginPage.styled.js";
 import { login } from "../../api.js";
-import { useUser } from "../../components/hooks/useUser.jsx";
 
-const LoginPage = () => {
-  const { isLoginUser } = useUser();
+const LoginPage = ({ setAuth, setUser }) => {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
