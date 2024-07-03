@@ -10,6 +10,8 @@ import ViewCardPage from "./pages/viewCardPage/ViewCardPage";
 import { GlobalStyled } from "./Global.styled";
 import RoutesPath from "./RoutesPath";
 import PrivateRoute from "./components/PrivatRoute";
+import NewCardPopup from "./components/popups/newCard/NewCard";
+import { TasksProvider } from "./components/context/tasks";
 
 function App() {
   const [isAuth, setAuth] = useState(false);
@@ -18,11 +20,18 @@ function App() {
     <>
       <GlobalStyled />
       <Routes>
-        <Route element={<PrivateRoute isAuth={isAuth} />}>
+        <Route
+          element={
+            <TasksProvider>
+              <PrivateRoute isAuth={isAuth} />
+            </TasksProvider>
+          }
+        >
           <Route
             path={RoutesPath.HOME}
             element={<MainPage user={user} setUser={setUser} />}
           >
+            <Route path={RoutesPath.NEWCARD} element={<NewCardPopup />} />
             <Route
               path={RoutesPath.EXIT}
               element={<ExitPage isAuth={setAuth} />}

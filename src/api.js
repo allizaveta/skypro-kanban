@@ -58,7 +58,7 @@ export async function addNewCard({
     description,
     date,
 }) {
-    const response = await fetch(url, {
+    const response = await fetch(URL, {
         method: "POST",
         headers: {
             Authorization: `Bearer ${token}`,
