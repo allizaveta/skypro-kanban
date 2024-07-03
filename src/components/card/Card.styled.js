@@ -52,7 +52,7 @@ export const CardTheme = styled.div`
   padding: 5px 14px;
   border-radius: 18px;
   background-color: ${({ $themeColor }) =>
-        topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
+    topicStyles[$themeColor]?.backgroundColor || "#94a6be"};
 
   ${CardText} {
     color: ${({ $themeColor }) => topicStyles[$themeColor]?.color || "#ffffff"};
