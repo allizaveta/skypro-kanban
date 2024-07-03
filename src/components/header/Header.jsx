@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import * as S from "./Header.styled";
 import UserPop from "../popups/user/User";
+import { useUser } from "../hooks/useUser";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
 
   const handleDropdown = () => {
     setIsOpen((prevState) => !prevState);
@@ -27,7 +29,7 @@ export const Header = () => {
             <S.HeaderBtnMainNew id="btnMainNew">
               <a href="#popNewCard">Создать новую задачу</a>
             </S.HeaderBtnMainNew>
-            <S.HeaderUser onClick={handleDropdown}>Ivan Ivanov</S.HeaderUser>
+            <S.HeaderUser onClick={handleDropdown}>{user.name}</S.HeaderUser>
             {isOpen && <UserPop />}
           </S.HeaderNav>
         </S.HeaderBlock>
