@@ -13,8 +13,7 @@ const getUserFromLS = () => {
 };
 
 export const UserProvider = ({ children }) => {
-  let navigate = useNavigate();
-
+  const navigate = useNavigate();
   const [user, setUser] = useState(getUserFromLS);
 
   const isLoginUser = (newUser) => {
@@ -24,7 +23,6 @@ export const UserProvider = ({ children }) => {
 
   const logoutUser = () => {
     setUser(null);
-    navigate(RoutesPath.LOGIN);
   };
 
   useEffect(() => {

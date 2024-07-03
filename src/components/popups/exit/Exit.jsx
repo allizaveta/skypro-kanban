@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import RoutesPath from "../../../RoutesPath";
 import * as S from "./Exit.styled";
+import { useUser } from "../../hooks/useUser";
 
-const PopExit = ({ setUser }) => {
+const PopExit = () => {
+  const { logoutUser } = useUser();
+  const navigate = useNavigate();
+
   const logOut = () => {
-    setAuth(false);
+    logoutUser();
     navigate(RoutesPath.LOGIN);
-    setUser(null);
   };
+
   return (
     <S.ExitHeader>
       <S.PopExitCnt>
@@ -17,8 +21,9 @@ const PopExit = ({ setUser }) => {
           </S.PopExitTitle>
           <form className="pop-exit__form" id="formExit" action="#">
             <S.PopExitFormGroup>
-              <S.Button $primary>
-                <Link onClick={logOut}> Да, выйти </Link>
+              <S.Button $primary type="button" onClick={logOut}>
+                {" "}
+                Да, выйти{" "}
               </S.Button>
               <S.Button>
                 <Link to={RoutesPath.HOME}>Нет, остаться</Link>
