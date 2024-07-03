@@ -1,5 +1,4 @@
 import "./App.css";
-import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainPage from "./pages/mainPage/MainPage";
 import LoginPage from "./pages/loginPage/LoginPage";
@@ -14,7 +13,6 @@ import NewCardPopup from "./components/popups/newCard/NewCard";
 import { TasksProvider } from "./components/context/tasks";
 
 function App() {
-  const [isAuth, setAuth] = useState(false);
   return (
     <>
       <GlobalStyled />
@@ -28,10 +26,7 @@ function App() {
         >
           <Route path={RoutesPath.HOME} element={<MainPage />}>
             <Route path={RoutesPath.NEWCARD} element={<NewCardPopup />} />
-            <Route
-              path={RoutesPath.EXIT}
-              element={<ExitPage isAuth={setAuth} />}
-            />
+            <Route path={RoutesPath.EXIT} element={<ExitPage />} />
             <Route
               path={`${RoutesPath.VIEW_CARD}/:id`}
               element={<ViewCardPage />}
