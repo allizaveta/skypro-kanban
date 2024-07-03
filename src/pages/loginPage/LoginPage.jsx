@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import RoutesPath from "../../RoutesPath.jsx";
 import { Wrapper } from "../../Common.styled.js";
 import * as S from "./LoginPage.styled.js";
 import { login } from "../../api.js";
+import { useUser } from "../../components/hooks/useUser";
 
-const LoginPage = ({ setAuth, setUser }) => {
-  const navigate = useNavigate();
+const LoginPage = () => {
+  const { isLoginUser } = useUser();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -35,9 +36,7 @@ const LoginPage = ({ setAuth, setUser }) => {
       });
       console.log("Login response", response);
 
-      setAuth(true);
-      setUser(response.user);
-      navigate(RoutesPath.HOME);
+      isLoginUser(response.user);
     } catch (error) {
       console.error(error.message);
       if (error.message === "Failed to fetch") {
@@ -47,6 +46,7 @@ const LoginPage = ({ setAuth, setUser }) => {
       setError(error.message);
     }
   };
+
   return (
     <Wrapper>
       <S.Background>

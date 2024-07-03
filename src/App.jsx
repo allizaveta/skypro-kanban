@@ -15,7 +15,6 @@ import { TasksProvider } from "./components/context/tasks";
 
 function App() {
   const [isAuth, setAuth] = useState(false);
-  const [user, setUser] = useState(null);
   return (
     <>
       <GlobalStyled />
@@ -23,14 +22,11 @@ function App() {
         <Route
           element={
             <TasksProvider>
-              <PrivateRoute isAuth={isAuth} />
+              <PrivateRoute />
             </TasksProvider>
           }
         >
-          <Route
-            path={RoutesPath.HOME}
-            element={<MainPage user={user} setUser={setUser} />}
-          >
+          <Route path={RoutesPath.HOME} element={<MainPage />}>
             <Route path={RoutesPath.NEWCARD} element={<NewCardPopup />} />
             <Route
               path={RoutesPath.EXIT}
@@ -42,10 +38,7 @@ function App() {
             />
           </Route>
         </Route>
-        <Route
-          path={RoutesPath.LOGIN}
-          element={<LoginPage setAuth={setAuth} setUser={setUser} />}
-        />
+        <Route path={RoutesPath.LOGIN} element={<LoginPage />} />
         <Route path={RoutesPath.REGISTER} element={<RegisterPage />} />
         <Route path={RoutesPath.NOT_FOUND} element={<NotfoundPage />} />
       </Routes>
