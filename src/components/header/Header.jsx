@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import * as S from "./Header.styled";
 import UserPop from "../popups/user/User";
 import { useUser } from "../hooks/useUser";
+import { Link } from "react-router-dom";
+import RoutesPath from "../../RoutesPath";
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +29,7 @@ export const Header = () => {
           </S.HeaderLogo>
           <S.HeaderNav>
             <S.HeaderBtnMainNew id="btnMainNew">
-              <a href="#popNewCard">Создать новую задачу</a>
+              <Link to={RoutesPath.NEWCARD}>Создать новую задачу</Link>
             </S.HeaderBtnMainNew>
             <S.HeaderUser onClick={handleDropdown}>{user.name}</S.HeaderUser>
             {isOpen && <UserPop />}

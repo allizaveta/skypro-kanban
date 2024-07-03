@@ -14,16 +14,6 @@ const MainPage = () => {
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [cards, setCards] = useState([]);
-  const addCard = () => {
-    const newCard = {
-      _id: cards.length + 1,
-      topic: "Web Design",
-      title: "Название задачи",
-      date: "04.06.24",
-      status: "Без статуса",
-    };
-    setCards([...cards, newCard]);
-  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,7 +32,6 @@ const MainPage = () => {
   return (
     <>
       <Wrapper>
-        <NewCardPopup addCard={addCard} />
         <Header />
         {error && <S.Text>{error}</S.Text>}
         {!error && isLoading ? (
