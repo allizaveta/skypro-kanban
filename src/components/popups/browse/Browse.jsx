@@ -54,10 +54,7 @@ const BrowsePopup = ({ id, ...props }) => {
                   />
                 </div>
               </form>
-              <div className="pop-new-card__calendar calendar">
-                <p className="calendar__ttl subttl">Даты</p>
-                <Calendar />
-              </div>
+              <Calendar />
             </div>
             <div className="theme-down__categories theme-down">
               <p className="categories__p subttl">Категория</p>
