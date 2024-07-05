@@ -8,18 +8,19 @@ import { Outlet } from "react-router-dom";
 import { getTasks } from "../../api";
 import * as S from "./MainPage.styled";
 import { useUser } from "../../components/hooks/useUser";
+import { useTasks } from "../../components/hooks/useTasks";
 
 const MainPage = () => {
   const { user } = useUser();
   const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [cards, setCards] = useState([]);
+  const { tasks, setTasks } = useTasks([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await getTasks(user.token);
         console.log("tasks:", response);
-        setCards(response.tasks);
+        setTasks(response.tasks);
         setLoading(false);
       } catch (error) {
         console.error(error);
@@ -34,11 +35,7 @@ const MainPage = () => {
       <Wrapper>
         <Header />
         {error && <S.Text>{error}</S.Text>}
-        {!error && isLoading ? (
-          <S.Text>Загрузка</S.Text>
-        ) : (
-          <Main cards={cards} />
-        )}
+        {!error && isLoading ? <S.Text>Загрузка</S.Text> : <Main />}
         <Outlet />
       </Wrapper>
     </>
