@@ -209,15 +209,15 @@ export const CategoriesThemes = styled.div`
 `;
 
 const themeStyles = {
-    orange: css`
+  orange: css`
     background-color: #ffe4c2;
     color: #ff6d00;
   `,
-    green: css`
+  green: css`
     background-color: #b4fdd1;
     color: #06b16e;
   `,
-    purple: css`
+  purple: css`
     background-color: #e9d4ff;
     color: #9a48f1;
   `,

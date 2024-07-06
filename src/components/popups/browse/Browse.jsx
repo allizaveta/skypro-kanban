@@ -1,50 +1,49 @@
 import Calendar from "../../calendar/Calendar";
 import { Link } from "react-router-dom";
 import RoutesPath from "../../../RoutesPath";
+import * as S from "./Browse.styled";
 
 const BrowsePopup = ({ id, ...props }) => {
   return (
-    <div className="pop-browse" id="popBrowse">
-      <div className="pop-browse__container">
-        <div className="pop-browse__block">
+    <S.PopBrowse id="popBrowse">
+      <S.PopBrowseContainer>
+        <S.PopBrowseBlock>
           <div className="pop-browse__content">
-            <div className="pop-browse__top-block">
-              <h3 className="pop-browse__ttl">Название задачи{id}</h3>
-              <div className="categories__theme theme-top _orange _active-category">
+            <S.PopBrowseTopBLock>
+              <S.PopBrowseTtl>Название задачи{id}</S.PopBrowseTtl>
+              <S.CategoriesTheme className="theme-top _orange _active-category">
                 <p className="_orange">Web Design</p>
-              </div>
-            </div>
-            <div className="pop-browse__status status">
-              <p className="status__p subttl">Статус</p>
-              <div className="status__themes">
-                <div className="status__theme _hide">
+              </S.CategoriesTheme>
+            </S.PopBrowseTopBLock>
+            <S.Status>
+              <S.StatusP className="subttl">Статус</S.StatusP>
+              <S.StatusThemes>
+                <S.StatusTheme className="_hide">
                   <p>Без статуса</p>
-                </div>
-                <div className="status__theme _gray">
+                </S.StatusTheme>
+                <S.StatusTheme className="_gray">
                   <p className="_gray">Нужно сделать</p>
-                </div>
-                <div className="status__theme _hide">
+                </S.StatusTheme>
+                <S.StatusTheme className=" _hide">
                   <p>В работе</p>
-                </div>
-                <div className="status__theme _hide">
+                </S.StatusTheme>
+                <S.StatusTheme className="_hide">
                   <p>Тестирование</p>
-                </div>
-                <div className="status__theme _hide">
+                </S.StatusTheme>
+                <S.StatusTheme className="_hide">
                   <p>Готово</p>
-                </div>
-              </div>
-            </div>
-            <div className="pop-browse__wrap">
-              <form
-                className="pop-browse__form form-browse"
+                </S.StatusTheme>
+              </S.StatusThemes>
+            </S.Status>
+            <S.PopBrowseWrap>
+              <S.PopBrowseForm
+                className="form-browse"
                 id="formBrowseCard"
                 action="#"
               >
-                <div className="form-browse__block">
-                  <label htmlFor="textArea01" className="subttl">
-                    Описание задачи
-                  </label>
-                  <textarea
+                <S.FormBrowseBlock>
+                  <label htmlFor="textArea01">Описание задачи</label>
+                  <S.FormBrowseArea
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
@@ -52,15 +51,15 @@ const BrowsePopup = ({ id, ...props }) => {
                     placeholder="Введите описание задачи..."
                     defaultValue={""}
                   />
-                </div>
-              </form>
+                </S.FormBrowseBlock>
+              </S.PopBrowseForm>
               <Calendar />
-            </div>
+            </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
-              <p className="categories__p subttl">Категория</p>
-              <div className="categories__theme _orange _active-category">
+              <S.CategoriesP className="subttl">Категория</S.CategoriesP>
+              <S.CategoriesTheme className="_orange _active-category">
                 <p className="_orange">Web Design</p>
-              </div>
+              </S.CategoriesTheme>
             </div>
             <div className="pop-browse__btn-browse ">
               <div className="btn-group">
@@ -95,9 +94,9 @@ const BrowsePopup = ({ id, ...props }) => {
               </button>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </S.PopBrowseBlock>
+      </S.PopBrowseContainer>
+    </S.PopBrowse>
   );
 };
 
