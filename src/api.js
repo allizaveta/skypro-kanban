@@ -80,3 +80,32 @@ export async function addNewCard({
     const data = await response.json();
     return data;
 }
+
+export async function deleteTask({ id, token }) {
+    const responce = await fetch(URL + `/${id}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (responce.status === 400) {
+        throw new Error("Ошибка удаления");
+    } else {
+        const data = await responce.json();
+        return data;
+    }
+}
+export async function editTask({ id, token }) {
+    const responce = await fetch(URL + `/${id}`, {
+        method: "PUT",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+    if (responce.status === 400) {
+        throw new Error("Ошибка редактирования");
+    } else {
+        const data = await responce.json();
+        return data;
+    }
+}
