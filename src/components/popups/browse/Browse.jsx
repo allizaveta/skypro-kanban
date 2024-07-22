@@ -1,18 +1,85 @@
 import Calendar from "../../calendar/Calendar";
-import { Link } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import RoutesPath from "../../../RoutesPath";
 import * as S from "./Browse.styled";
+import { useUser } from "../../hooks/useUser";
+import { useTasks } from "../../hooks/useTasks";
+import { useState } from "react";
+import { deleteTask } from "../../../api";
 
-const BrowsePopup = ({ id, ...props }) => {
+const BrowsePopup = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useUser();
+  const { tasks, setTasks } = useTasks();
+  const task = tasks.find((task) => task._id === id);
+  const [selected, setSelected] = useState(task.date);
+  const [isEdit, setIsEdit] = useState(false);
+
+  const [editedTask, setEditedTask] = useState({
+    title: task?.title,
+    topic: task?.topic,
+    status: task?.status,
+    description: task?.description,
+    date: task?.date,
+  });
+
+  const handleInputChange = (e) => {
+    console.log("редактирую");
+    const { name, value } = e.target;
+    setEditedTask({
+      ...editedTask,
+      [name]: value,
+    });
+  };
+
+  const editCard = async (e) => {
+    e.preventDefault();
+
+    const taskData = {
+      ...editedTask,
+      date: selected,
+      token: user.token,
+    };
+    console.log(editedTask);
+
+    await editedTask({
+      id,
+      token: user.token,
+    })
+      .then((data) => {
+        returnTask(data.user);
+        navigate(RoutesPath.HOME);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const deleteCard = async (e) => {
+    e.preventDefault();
+
+    await deleteTask({
+      id,
+      token: user.token,
+    })
+      .then((data) => {
+        setTasks(data.user);
+        navigate(RoutesPath.HOME);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
         <S.PopBrowseBlock>
           <div className="pop-browse__content">
             <S.PopBrowseTopBLock>
-              <S.PopBrowseTtl>Название задачи{id}</S.PopBrowseTtl>
+              <S.PopBrowseTtl>{editedTask.title}</S.PopBrowseTtl>
               <S.CategoriesTheme className="theme-top _orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{editedTask.topic}</p>
               </S.CategoriesTheme>
             </S.PopBrowseTopBLock>
             <S.Status>
@@ -42,14 +109,23 @@ const BrowsePopup = ({ id, ...props }) => {
                 action="#"
               >
                 <S.FormBrowseBlock>
-                  <label htmlFor="textArea01">Описание задачи</label>
+                  <label
+                    htmlFor="textArea01"
+                    className="subttl"
+                    onChange={handleInputChange}
+                    name="description"
+                    id="textArea01"
+                    placeholder="Enter task description..."
+                  >
+                    Описание задачи
+                  </label>
                   <S.FormBrowseArea
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
                     readOnly=""
                     placeholder="Введите описание задачи..."
-                    defaultValue={""}
+                    defaultValue={editedTask.description}
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
@@ -66,7 +142,10 @@ const BrowsePopup = ({ id, ...props }) => {
                 <button className="btn-browse__edit _btn-bor _hover03">
                   <a href="#">Редактировать задачу</a>
                 </button>
-                <button className="btn-browse__delete _btn-bor _hover03">
+                <button
+                  className="btn-browse__delete _btn-bor _hover03"
+                  onClick={deleteCard}
+                >
                   <a href="#">Удалить задачу</a>
                 </button>
               </div>

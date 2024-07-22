@@ -5,12 +5,12 @@ import LoginPage from "./pages/loginPage/LoginPage";
 import RegisterPage from "./pages/registerPage/RegisterPage";
 import ExitPage from "./pages/exitPage/ExitPage";
 import NotfoundPage from "./pages/notFoundPage/NotFoundPage";
-import ViewCardPage from "./pages/viewCardPage/ViewCardPage";
 import { GlobalStyled } from "./Global.styled";
 import RoutesPath from "./RoutesPath";
 import PrivateRoute from "./components/PrivatRoute";
 import NewCardPopup from "./components/popups/newCard/NewCard";
 import { TasksProvider } from "./components/context/tasks";
+import ViewCardPage from "./pages/viewCardPage/ViewCardPage";
 
 function App() {
   return (
