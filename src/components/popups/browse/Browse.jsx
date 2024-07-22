@@ -36,7 +36,7 @@ const BrowsePopup = () => {
   const editCard = async (e) => {
     e.preventDefault();
 
-    const taskData = {
+    const task = {
       ...editedTask,
       date: selected,
       token: user.token,
@@ -84,23 +84,25 @@ const BrowsePopup = () => {
             </S.PopBrowseTopBLock>
             <S.Status>
               <S.StatusP className="subttl">Статус</S.StatusP>
-              <S.StatusThemes>
-                <S.StatusTheme className="_hide">
-                  <p>Без статуса</p>
-                </S.StatusTheme>
-                <S.StatusTheme className="_gray">
-                  <p className="_gray">Нужно сделать</p>
-                </S.StatusTheme>
-                <S.StatusTheme className=" _hide">
-                  <p>В работе</p>
-                </S.StatusTheme>
-                <S.StatusTheme className="_hide">
-                  <p>Тестирование</p>
-                </S.StatusTheme>
-                <S.StatusTheme className="_hide">
-                  <p>Готово</p>
-                </S.StatusTheme>
-              </S.StatusThemes>
+              {isEdit && (
+                <S.StatusThemes>
+                  <S.StatusTheme className="_hide">
+                    <p>Без статуса</p>
+                  </S.StatusTheme>
+                  <S.StatusTheme className="_gray">
+                    <p className="_gray">Нужно сделать</p>
+                  </S.StatusTheme>
+                  <S.StatusTheme className=" _hide">
+                    <p>В работе</p>
+                  </S.StatusTheme>
+                  <S.StatusTheme className="_hide">
+                    <p>Тестирование</p>
+                  </S.StatusTheme>
+                  <S.StatusTheme className="_hide">
+                    <p>Готово</p>
+                  </S.StatusTheme>
+                </S.StatusThemes>
+              )}
             </S.Status>
             <S.PopBrowseWrap>
               <S.PopBrowseForm
@@ -123,24 +125,27 @@ const BrowsePopup = () => {
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
-                    readOnly=""
+                    readOnly={!isEdit}
                     placeholder="Введите описание задачи..."
                     defaultValue={editedTask.description}
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar />
+              <Calendar elected={selected} setSelected={setSelected} />
             </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
               <S.CategoriesP className="subttl">Категория</S.CategoriesP>
               <S.CategoriesTheme className="_orange _active-category">
-                <p className="_orange">Web Design</p>
+                <p className="_orange">{editedTask.topic}</p>
               </S.CategoriesTheme>
             </div>
             <div className="pop-browse__btn-browse ">
               <div className="btn-group">
-                <button className="btn-browse__edit _btn-bor _hover03">
-                  <a href="#">Редактировать задачу</a>
+                <button
+                  className="btn-browse__edit _btn-bor _hover03"
+                  onClick={() => setIsEdit(true)}
+                >
+                  Редактировать задачу
                 </button>
                 <button
                   className="btn-browse__delete _btn-bor _hover03"
@@ -164,12 +169,16 @@ const BrowsePopup = () => {
                 <button
                   className="btn-edit__delete _btn-bor _hover03"
                   id="btnDelete"
+                  onClick={deleteCard}
                 >
-                  <a href="#">Удалить задачу</a>
+                  Удалить задачу
                 </button>
               </div>
-              <button className="btn-edit__close _btn-bg _hover01">
-                <a href="#">Закрыть</a>
+              <button
+                className="btn-edit__close _btn-bg _hover01"
+                onClick={() => navigate(RoutesPath.HOME)}
+              >
+                Закрыть
               </button>
             </div>
           </div>
