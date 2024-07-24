@@ -4,7 +4,7 @@ import RoutesPath from "../../../RoutesPath";
 import * as S from "./Browse.styled";
 import { useUser } from "../../hooks/useUser";
 import { useTasks } from "../../hooks/useTasks";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { deleteTask, updateTask } from "../../../api";
 
 const BrowsePopup = () => {
@@ -12,17 +12,32 @@ const BrowsePopup = () => {
   const navigate = useNavigate();
   const { user } = useUser();
   const { tasks, setTasks } = useTasks();
-  const task = tasks.find((task) => task._id === id);
-  const [selected, setSelected] = useState(task.date);
+  const [selected, setSelected] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
-
   const [editedTask, setEditedTask] = useState({
-    title: task?.title,
-    topic: task?.topic,
-    status: task?.status,
-    description: task?.description,
-    date: task?.date,
+    title: "",
+    topic: "",
+    status: "",
+    description: "",
+    date: "",
   });
+  useEffect(() => {
+    if (tasks) {
+      const task = tasks.find((task) => task._id === id);
+      if (!task) {
+        navigate(RoutesPath.HOME);
+      } else {
+        setEditedTask({
+          title: task.title,
+          topic: task.topic,
+          status: task.status,
+          description: task.description,
+          date: task.date,
+        });
+        setSelected(task.date);
+      }
+    }
+  }, [id, tasks, navigate]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -70,6 +85,10 @@ const BrowsePopup = () => {
         console.error(error);
       });
   };
+
+  if (!tasks) {
+    return null;
+  }
 
   return (
     <S.PopBrowse id="popBrowse">
