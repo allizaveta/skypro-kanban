@@ -36,7 +36,7 @@ const BrowsePopup = () => {
   const editCard = async (e) => {
     e.preventDefault();
 
-    const task = {
+    const taskData = {
       ...editedTask,
       date: selected,
       token: user.token,
@@ -48,7 +48,7 @@ const BrowsePopup = () => {
       token: user.token,
     })
       .then((data) => {
-        returnTask(data.user);
+        updateTask(data.user);
         navigate(RoutesPath.HOME);
       })
       .catch((error) => {
