@@ -72,18 +72,13 @@ const BrowsePopup = () => {
 
   const deleteCard = async (e) => {
     e.preventDefault();
-
-    await deleteTask({
-      id,
-      token: user.token,
-    })
-      .then((data) => {
-        setTasks(data.user);
-        navigate(RoutesPath.HOME);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      await deleteTask({ id, token: user.token });
+      setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
+      navigate(RoutesPath.HOME);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (!tasks) {
@@ -198,12 +193,12 @@ const BrowsePopup = () => {
                       Удалить задачу
                     </button>
                   </div>
-                  <button
+                  {/* <button
                     className="btn-edit__close _btn-bg _hover01"
                     onClick={() => setIsEdit(false)}
                   >
                     Закрыть
-                  </button>
+                  </button> */}
                 </div>
               )}
               <button className="btn-browse__close _btn-bg _hover01">

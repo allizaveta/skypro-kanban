@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import RoutesPath from "./RoutesPath";
 const URL = "https://wedev-api.sky.pro/api/kanban"
 const URL_USER = "https://wedev-api.sky.pro/api/user"
 export async function getTasks(token) {

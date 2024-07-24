@@ -5,6 +5,7 @@ import { useTasks } from "../hooks/useTasks";
 
 const Main = () => {
   const { tasks } = useTasks();
+
   return (
     <S.Main>
       <S.Container>
@@ -14,7 +15,9 @@ const Main = () => {
               <Column
                 key={status}
                 title={status}
-                cardList={tasks.filter((card) => card.status === status)}
+                cardList={
+                  tasks ? tasks.filter((card) => card.status === status) : []
+                }
               />
             ))}
           </S.MainContent>
