@@ -5,7 +5,7 @@ import * as S from "./Browse.styled";
 import { useUser } from "../../hooks/useUser";
 import { useTasks } from "../../hooks/useTasks";
 import { useState } from "react";
-import { deleteTask } from "../../../api";
+import { deleteTask, updateTask } from "../../../api";
 
 const BrowsePopup = () => {
   const { id } = useParams();
@@ -41,9 +41,9 @@ const BrowsePopup = () => {
       date: selected,
       token: user.token,
     };
-    console.log(editedTask);
+    console.log(updateTask);
 
-    await editedTask({
+    await updateTask({
       id,
       token: user.token,
     })
@@ -86,19 +86,19 @@ const BrowsePopup = () => {
               <S.StatusP className="subttl">Статус</S.StatusP>
               {isEdit && (
                 <S.StatusThemes>
-                  <S.StatusTheme className="_hide">
+                  <S.StatusTheme className="status__theme">
                     <p>Без статуса</p>
                   </S.StatusTheme>
-                  <S.StatusTheme className="_gray">
+                  <S.StatusTheme className="status__theme _gray">
                     <p className="_gray">Нужно сделать</p>
                   </S.StatusTheme>
-                  <S.StatusTheme className=" _hide">
+                  <S.StatusTheme className=" status__theme">
                     <p>В работе</p>
                   </S.StatusTheme>
-                  <S.StatusTheme className="_hide">
+                  <S.StatusTheme className="status__theme">
                     <p>Тестирование</p>
                   </S.StatusTheme>
-                  <S.StatusTheme className="_hide">
+                  <S.StatusTheme className="status__theme">
                     <p>Готово</p>
                   </S.StatusTheme>
                 </S.StatusThemes>
@@ -114,10 +114,10 @@ const BrowsePopup = () => {
                   <label
                     htmlFor="textArea01"
                     className="subttl"
-                    onChange={handleInputChange}
                     name="description"
                     id="textArea01"
                     placeholder="Enter task description..."
+                    onChange={handleInputChange}
                   >
                     Описание задачи
                   </label>
@@ -125,8 +125,8 @@ const BrowsePopup = () => {
                     className="form-browse__area"
                     name="text"
                     id="textArea01"
-                    readOnly={!isEdit}
                     placeholder="Введите описание задачи..."
+                    readOnly={!isEdit}
                     defaultValue={editedTask.description}
                   />
                 </S.FormBrowseBlock>
@@ -139,46 +139,55 @@ const BrowsePopup = () => {
                 <p className="_orange">{editedTask.topic}</p>
               </S.CategoriesTheme>
             </div>
-            <div className="pop-browse__btn-browse ">
-              <div className="btn-group">
-                <button
-                  className="btn-browse__edit _btn-bor _hover03"
-                  onClick={() => setIsEdit(true)}
-                >
-                  Редактировать задачу
-                </button>
-                <button
-                  className="btn-browse__delete _btn-bor _hover03"
-                  onClick={deleteCard}
-                >
-                  <a href="#">Удалить задачу</a>
-                </button>
-              </div>
+            <div className="pop-browse__btn-browse">
+              {!isEdit ? (
+                <div className="btn-group">
+                  <button
+                    className="btn-browse__edit _btn-bor _hover03"
+                    onClick={() => setIsEdit(true)}
+                  >
+                    Редактировать задачу
+                  </button>
+                  <button
+                    className="btn-browse__delete _btn-bor _hover03"
+                    onClick={deleteCard}
+                  >
+                    <a href="#">Удалить задачу</a>
+                  </button>
+                </div>
+              ) : (
+                <div className="pop-browse__btn-edit">
+                  <div className="btn-group">
+                    <button
+                      className="btn-edit__edit _btn-bg _hover01"
+                      onClick={editCard}
+                    >
+                      Сохранить
+                    </button>
+                    <button
+                      className="btn-edit__edit _btn-bor _hover03"
+                      onClick={() => setIsEdit(false)}
+                    >
+                      Отменить
+                    </button>
+                    <button
+                      className="btn-edit__delete _btn-bor _hover03"
+                      id="btnDelete"
+                      onClick={deleteCard}
+                    >
+                      Удалить задачу
+                    </button>
+                  </div>
+                  <button
+                    className="btn-edit__close _btn-bg _hover01"
+                    onClick={() => setIsEdit(false)}
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              )}
               <button className="btn-browse__close _btn-bg _hover01">
                 <Link to={RoutesPath.HOME}>Закрыть</Link>
-              </button>
-            </div>
-            <div className="pop-browse__btn-edit _hide">
-              <div className="btn-group">
-                <button className="btn-edit__edit _btn-bg _hover01">
-                  <a href="#">Сохранить</a>
-                </button>
-                <button className="btn-edit__edit _btn-bor _hover03">
-                  <a href="#">Отменить</a>
-                </button>
-                <button
-                  className="btn-edit__delete _btn-bor _hover03"
-                  id="btnDelete"
-                  onClick={deleteCard}
-                >
-                  Удалить задачу
-                </button>
-              </div>
-              <button
-                className="btn-edit__close _btn-bg _hover01"
-                onClick={() => navigate(RoutesPath.HOME)}
-              >
-                Закрыть
               </button>
             </div>
           </div>

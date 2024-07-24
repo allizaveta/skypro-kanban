@@ -95,7 +95,7 @@ export async function deleteTask({ id, token }) {
         return data;
     }
 }
-export async function editTask({ id, token }) {
+export async function updateTask({ id, token }) {
     const responce = await fetch(URL + `/${id}`, {
         method: "PUT",
         headers: {
