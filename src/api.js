@@ -95,17 +95,22 @@ export async function deleteTask({ id, token }) {
         return data;
     }
 }
-export async function updateTask({ id, token }) {
-    const responce = await fetch(URL + `/${id}`, {
+export async function updateTask({ id, token, ...taskData }) {
+    console.log('Update Task Data:', { id, token, ...taskData });
+    const response = await fetch(`${URL}/${id}`, {
         method: "PUT",
         headers: {
             Authorization: `Bearer ${token}`,
-        }
+        },
+        body: JSON.stringify(taskData),
     });
-    if (responce.status === 400) {
+
+    if (response.status === 400) {
+        const errorData = await response.json();
+        console.error('Server Error:', errorData);
         throw new Error("Ошибка редактирования");
     } else {
-        const data = await responce.json();
+        const data = await response.json();
         return data;
     }
 }

@@ -25,7 +25,6 @@ const BrowsePopup = () => {
   });
 
   const handleInputChange = (e) => {
-    console.log("редактирую");
     const { name, value } = e.target;
     setEditedTask({
       ...editedTask,
@@ -40,20 +39,20 @@ const BrowsePopup = () => {
       ...editedTask,
       date: selected,
       token: user.token,
+      id: id,
     };
-    console.log(updateTask);
 
-    await updateTask({
-      id,
-      token: user.token,
-    })
-      .then((data) => {
-        updateTask(data.user);
-        navigate(RoutesPath.HOME);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    try {
+      const data = await updateTask(taskData);
+      setTasks((prevTasks) =>
+        prevTasks.map((task) =>
+          task._id === id ? { ...task, ...taskData } : task
+        )
+      );
+      navigate(RoutesPath.HOME);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const deleteCard = async (e) => {
@@ -71,6 +70,7 @@ const BrowsePopup = () => {
         console.error(error);
       });
   };
+
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
@@ -123,15 +123,16 @@ const BrowsePopup = () => {
                   </label>
                   <S.FormBrowseArea
                     className="form-browse__area"
-                    name="text"
+                    name="description"
                     id="textArea01"
                     placeholder="Введите описание задачи..."
                     readOnly={!isEdit}
-                    defaultValue={editedTask.description}
+                    value={editedTask.description}
+                    onChange={handleInputChange}
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar elected={selected} setSelected={setSelected} />
+              <Calendar selected={selected} setSelected={setSelected} />
             </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
               <S.CategoriesP className="subttl">Категория</S.CategoriesP>
