@@ -60,6 +60,7 @@ const BrowsePopup = () => {
       date: selected.toISOString(),
       token: user.token,
       id: id,
+      status: editedTask.status || "Без статуса",
     };
 
     try {
