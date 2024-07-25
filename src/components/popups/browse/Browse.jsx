@@ -74,10 +74,14 @@ const BrowsePopup = () => {
     e.preventDefault();
     try {
       await deleteTask({ id, token: user.token });
+
+      // После успешного удаления задачи обновляем состояние задач в Main
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
-      navigate(RoutesPath.HOME);
+
+      // Перенаправляем пользователя на главную страницу
+      navigate(RoutesPath.HOME); // Можно заменить на нужный вам маршрут
     } catch (error) {
-      console.error(error);
+      console.error(error); // Выводим ошибку в консоль
     }
   };
 
