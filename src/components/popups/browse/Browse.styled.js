@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const PopBrowse = styled.div`
-display: block;
+  display: block;
   width: 100%;
   height: 100%;
   min-width: 375px;
@@ -13,9 +13,10 @@ display: block;
   :target {
     display: block;
     @media screen and (max-width: 660px) {
-        top: 70px;
+      top: 70px;
     }
-}`;
+  }
+`;
 
 export const PopBrowseContainer = styled.div`
   width: 100%;
@@ -30,8 +31,8 @@ export const PopBrowseContainer = styled.div`
   @media screen and (max-width: 660px) {
     padding: 0;
     justify-content: flex-start;
-    }
-`
+  }
+`;
 
 export const PopBrowseBlock = styled.div`
   display: block;
@@ -45,56 +46,58 @@ export const PopBrowseBlock = styled.div`
   position: relative;
   @media screen and (max-width: 660px) {
     border-radius: 0;
-    }
-    @media screen and (max-width: 495px) {
-        padding: 20px 16px 32px;
-    }
-`
+  }
+  @media screen and (max-width: 495px) {
+    padding: 20px 16px 32px;
+  }
+`;
+
 export const PopBrowseContent = styled.div`
-display: block;
-text-align: left;
-@media screen and (max-width: 495px) {
+  display: block;
+  text-align: left;
+  @media screen and (max-width: 495px) {
     display: block;
     margin-bottom: 20px;
-    }
-`
+  }
+`;
 
 export const PopBrowseTopBLock = styled.div`
-display: flex;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 18px;
-  `;
-
+`;
 
 export const PopBrowseTtl = styled.h3`
-    color: #000;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px;`
+  color: #000;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+`;
 
 export const PopBrowseWrap = styled.div`
-    display: flex;
+  display: flex;
   align-items: flex-start;
   justify-content: space-between;
   @media screen and (max-width: 660px) {
     display: block;
-    }
-`
+  }
+`;
 
 export const PopBrowseForm = styled.div`
-max-width: 370px;
+  max-width: 370px;
   width: 100%;
   display: block;
   margin-bottom: 20px;
   @media screen and (max-width: 495px) {
     max-width: 100%;
-    }
-  `
+  }
+`;
+
 export const FormBrowseBlock = styled.div`
-display: flex;
-flex-direction: column;
-`
+  display: flex;
+  flex-direction: column;
+`;
 
 export const FormBrowseArea = styled.textarea`
   max-width: 370px;
@@ -110,41 +113,43 @@ export const FormBrowseArea = styled.textarea`
   margin-top: 14px;
   height: 200px;
   &::placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94a6be;
-  letter-spacing: -0.14px;}
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
   &::-moz-placeholder {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1px;
-  color: #94a6be;
-  letter-spacing: -0.14px;}
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1px;
+    color: #94a6be;
+    letter-spacing: -0.14px;
+  }
   @media screen and (max-width: 495px) {
     max-width: 100%;
     height: 37px;
   }
-`
+`;
 
-/* NEW */
 export const ActiveCategory = styled.div`
-opacity: 1 !important;
-`
+  opacity: 1 !important;
+`;
 
 export const Status = styled.div`
-margin-bottom: 11px;
-`
+  margin-bottom: 11px;
+`;
 
 export const Categories = styled.div`
-margin-bottom: 20px;
-`
+  margin-bottom: 20px;
+`;
 
 export const CategoriesP = styled.p`
-margin-bottom: 14px;
-`
+  margin-bottom: 14px;
+`;
+
 export const CategoriesTheme = styled.div`
-display: inline-block;
+  display: inline-block;
   width: auto;
   height: 30px;
   padding: 8px 20px;
@@ -157,27 +162,32 @@ display: inline-block;
     line-height: 14px;
     white-space: nowrap;
   }
-`
+`;
+
 export const StatusP = styled.p`
-margin-bottom: 14px;
-`
+  margin-bottom: 14px;
+`;
+
 export const StatusThemes = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-start;
-`
+`;
 
 export const StatusTheme = styled.div`
   border-radius: 24px;
   border: 0.7px solid rgba(148, 166, 190, 0.4);
-  color: #94a6be;
+  color: ${(props) => (props.$active ? "#FFFFFF" : "#94A6BE")};
+  background-color: ${(props) => (props.$active ? "#94A6BE" : "#FFFFFF")};
   padding: 11px 14px 10px;
   margin-right: 7px;
   margin-bottom: 7px;
+
   p {
     font-size: 14px;
-  line-height: 1;
-  letter-spacing: -0.14px;
+    line-height: 1;
+    letter-spacing: -0.14px;
   }
-`
+`;
+

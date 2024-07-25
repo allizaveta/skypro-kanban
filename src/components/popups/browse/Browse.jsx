@@ -48,18 +48,22 @@ const BrowsePopup = () => {
     });
   };
 
+  const handleStatusClick = (status) => {
+    setEditedTask((prev) => ({ ...prev, status }));
+  };
+
   const editCard = async (e) => {
     e.preventDefault();
 
     const taskData = {
       ...editedTask,
-      date: selected.toISOString(), // Ensure date is in ISO string format
+      date: selected.toISOString(),
       token: user.token,
       id: id,
     };
 
     try {
-      const data = await updateTask(taskData);
+      await updateTask(taskData);
       setTasks((prevTasks) =>
         prevTasks.map((task) =>
           task._id === id ? { ...task, ...taskData } : task
@@ -101,23 +105,30 @@ const BrowsePopup = () => {
             </S.PopBrowseTopBLock>
             <S.Status>
               <S.StatusP className="subttl">Статус</S.StatusP>
-              {isEdit && (
+              {!isEdit ? (
+                <S.StatusTheme $active={editedTask.status === ""}>
+                  <p>{editedTask.status || "Без статуса"}</p>
+                </S.StatusTheme>
+              ) : (
                 <S.StatusThemes>
-                  <S.StatusTheme className="status__theme">
-                    <p>Без статуса</p>
-                  </S.StatusTheme>
-                  <S.StatusTheme className="status__theme _gray">
-                    <p className="_gray">Нужно сделать</p>
-                  </S.StatusTheme>
-                  <S.StatusTheme className=" status__theme">
-                    <p>В работе</p>
-                  </S.StatusTheme>
-                  <S.StatusTheme className="status__theme">
-                    <p>Тестирование</p>
-                  </S.StatusTheme>
-                  <S.StatusTheme className="status__theme">
-                    <p>Готово</p>
-                  </S.StatusTheme>
+                  {[
+                    "",
+                    "Нужно сделать",
+                    "В работе",
+                    "Тестирование",
+                    "Готово",
+                  ].map((status) => (
+                    <S.StatusTheme
+                      key={status}
+                      $active={editedTask.status === status}
+                      className={`status__theme ${
+                        editedTask.status === status ? "_gray" : ""
+                      }`}
+                      onClick={() => handleStatusClick(status)}
+                    >
+                      <p>{status || "Без статуса"}</p>
+                    </S.StatusTheme>
+                  ))}
                 </S.StatusThemes>
               )}
             </S.Status>
@@ -128,14 +139,7 @@ const BrowsePopup = () => {
                 action="#"
               >
                 <S.FormBrowseBlock>
-                  <label
-                    htmlFor="textArea01"
-                    className="subttl"
-                    name="description"
-                    id="textArea01"
-                    placeholder="Enter task description..."
-                    onChange={handleInputChange}
-                  >
+                  <label htmlFor="textArea01" className="subttl">
                     Описание задачи
                   </label>
                   <S.FormBrowseArea
@@ -170,7 +174,7 @@ const BrowsePopup = () => {
                     className="btn-browse__delete _btn-bor _hover03"
                     onClick={deleteCard}
                   >
-                    <a href="#">Удалить задачу</a>
+                    Удалить задачу
                   </button>
                 </div>
               ) : (
