@@ -16,14 +16,14 @@ const UserPop = () => {
       <S.PopUserName>{user.name}</S.PopUserName>
       <S.PopUserMail>{user.login}</S.PopUserMail>
       <S.PopUserSetTheme>
-        <S.PopUserTheme>Темная тема</S.PopUserTheme>
+        {/*         <S.PopUserTheme>Темная тема</S.PopUserTheme>
         <S.PopUserCheckbox
           type="checkbox"
           className="checkbox"
           name="checkbox"
           checked={darkTheme}
           onChange={toggleTheme}
-        />
+        /> */}
       </S.PopUserSetTheme>
       <S.PopUserButton onClick={() => navigate(RoutesPath.EXIT)}>
         {" "}

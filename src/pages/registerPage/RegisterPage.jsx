@@ -4,6 +4,7 @@ import * as S from "../loginPage/LoginPage.styled.js";
 import RoutesPath from "../../RoutesPath.jsx";
 import { Wrapper } from "../../Common.styled.js";
 import { signup } from "../../api.js";
+
 const RegisterPage = () => {
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({
@@ -11,26 +12,36 @@ const RegisterPage = () => {
     email: "",
     password: "",
   });
-
+  const [fieldErrors, setFieldErrors] = useState({
+    name: false,
+    email: false,
+    password: false,
+  });
   const [error, setError] = useState(null);
 
   const onInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
+    setFieldErrors({ ...fieldErrors, [name]: false });
   };
 
   const onRegister = async (event) => {
     event.preventDefault();
+    let errors = {};
     if (!formValues.name) {
+      errors.name = true;
       setError("Введите имя");
-      return;
     }
     if (!formValues.email) {
+      errors.email = true;
       setError("Введите почту");
-      return;
     }
     if (!formValues.password) {
+      errors.password = true;
       setError("Введите пароль");
+    }
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       return;
     }
     try {
@@ -51,13 +62,14 @@ const RegisterPage = () => {
       setError(error.message);
     }
   };
+
   return (
     <Wrapper>
       <S.Background>
         <S.Container>
           <S.Block>
             <S.BlockTtl>Регистрация</S.BlockTtl>
-            <S.BlockInputForm id="formLogIn" onSubmit={onRegister}>
+            <S.BlockInputForm id="formRegister" onSubmit={onRegister}>
               <S.BlockInput
                 type="text"
                 value={formValues.name}
@@ -65,6 +77,7 @@ const RegisterPage = () => {
                 name="name"
                 id="first-name"
                 placeholder="Имя"
+                error={fieldErrors.name}
               />
               <S.BlockInput
                 type="email"
@@ -73,6 +86,7 @@ const RegisterPage = () => {
                 name="email"
                 id="formlogin"
                 placeholder="Эл. почта"
+                error={fieldErrors.email}
               />
               <S.BlockInput
                 type="password"
@@ -81,9 +95,16 @@ const RegisterPage = () => {
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
+                error={fieldErrors.password}
               />
-              <S.BlockBtnEnter id="btnEnter" type="submit">
-                Зарегестрироваться
+              <S.BlockBtnEnter
+                id="btnEnter"
+                type="submit"
+                disabled={
+                  fieldErrors.name || fieldErrors.email || fieldErrors.password
+                }
+              >
+                Зарегистрироваться
               </S.BlockBtnEnter>
               {error && <S.BlockError>{error}</S.BlockError>}
             </S.BlockInputForm>

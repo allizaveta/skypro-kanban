@@ -153,7 +153,11 @@ const BrowsePopup = () => {
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
-              <Calendar selected={selected} setSelected={setSelected} />
+              <Calendar
+                selected={selected}
+                setSelected={setSelected}
+                isEdit={isEdit}
+              />
             </S.PopBrowseWrap>
             <div className="theme-down__categories theme-down">
               <S.CategoriesP className="subttl">Категория</S.CategoriesP>

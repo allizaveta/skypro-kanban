@@ -4,7 +4,7 @@ import "react-day-picker/dist/style.css";
 import { format } from "date-fns";
 import { ru } from "date-fns/locale";
 
-const Calendar = ({ selected, setSelected }) => {
+const Calendar = ({ selected, setSelected, isEdit }) => {
   return (
     <>
       <S.Calendar>
@@ -12,8 +12,9 @@ const Calendar = ({ selected, setSelected }) => {
         <DayPicker
           mode="single"
           selected={selected}
-          onSelect={setSelected}
+          onSelect={isEdit ? setSelected : undefined}
           locale={ru}
+          disabled={!isEdit}
         />
         {!selected && (
           <S.CalendarTitleBottom>

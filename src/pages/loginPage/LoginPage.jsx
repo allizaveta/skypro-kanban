@@ -12,21 +12,31 @@ const LoginPage = () => {
     email: "",
     password: "",
   });
-
+  const [fieldErrors, setFieldErrors] = useState({
+    email: false,
+    password: false,
+  });
   const [error, setError] = useState(null);
+
   const onInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues({ ...formValues, [name]: value });
+    setFieldErrors({ ...fieldErrors, [name]: false });
   };
 
   const onRegister = async (event) => {
     event.preventDefault();
+    let errors = {};
     if (!formValues.email) {
+      errors.email = true;
       setError("Введите почту");
-      return;
     }
     if (!formValues.password) {
+      errors.password = true;
       setError("Введите пароль");
+    }
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       return;
     }
     try {
@@ -35,7 +45,6 @@ const LoginPage = () => {
         password: formValues.password,
       });
       console.log("Login response", response);
-
       isLoginUser(response.user);
     } catch (error) {
       console.error(error.message);
@@ -61,6 +70,7 @@ const LoginPage = () => {
                 placeholder="Эл. почта"
                 value={formValues.email}
                 onChange={onInputChange}
+                error={fieldErrors.email}
               />
               <S.BlockInput
                 type="password"
@@ -69,9 +79,14 @@ const LoginPage = () => {
                 placeholder="Пароль"
                 value={formValues.password}
                 onChange={onInputChange}
+                error={fieldErrors.password}
               />
               {error && <S.BlockError>{error}</S.BlockError>}
-              <S.BlockBtnEnter id="btnEnter" type="submit">
+              <S.BlockBtnEnter
+                id="btnEnter"
+                type="submit"
+                disabled={fieldErrors.email || fieldErrors.password}
+              >
                 Войти
               </S.BlockBtnEnter>
             </S.BlockInputForm>

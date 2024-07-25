@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { hover01 } from "../../Common.styled";
 
 export const Background = styled.div`
@@ -9,7 +9,7 @@ export const Background = styled.div`
 `;
 
 export const Container = styled.div`
-   width: 100%;
+  width: 100%;
   height: 100%;
   min-width: 320px;
   min-height: 100vh;
@@ -74,6 +74,12 @@ export const BlockInput = styled.input`
     letter-spacing: -0.28px;
     color: #94a6be;
   }
+
+  ${({ error }) =>
+    error &&
+    css`
+      border-color: red;
+    `}
 `;
 
 export const BlockBtnEnter = styled.button`
@@ -92,13 +98,19 @@ export const BlockBtnEnter = styled.button`
   letter-spacing: -0.14px;
   color: #ffffff;
   border: none;
+  cursor: pointer;
+
   ${hover01}
+
+  &:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
 
   @media screen and (max-width: 375px) {
     height: 40px;
   }
 `;
-
 
 export const BlockFormGroup = styled.div`
   text-align: center;
@@ -110,10 +122,11 @@ export const BlockFormGroup = styled.div`
 `;
 
 export const BlockFormGroupLink = styled(BlockFormGroup)`
-text-decoration: underline;
-:visited{
-  color: rgba(148, 166, 190, 0.4);
-}
+  text-decoration: underline;
+
+  :visited {
+    color: rgba(148, 166, 190, 0.4);
+  }
 `;
 
 export const InlineFormGroup = styled.div`
@@ -131,17 +144,18 @@ export const InlineFormGroup = styled.div`
 export const InlineFormLink = styled.span`
   text-decoration: underline;
   margin-left: 5px;
+
   :visited {
     color: rgba(148, 166, 190, 0.4);
   }
 `;
 
 export const BlockError = styled.p`
-font-family: Arial;
-font-size: 12px;
-font-weight: 400;
-line-height: 18px;
-text-align: center;
-color: red;
-margin-top: 7px;
-`
+  font-family: Arial;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+  color: red;
+  margin-top: 7px;
+`;
