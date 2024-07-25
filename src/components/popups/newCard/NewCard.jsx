@@ -94,6 +94,7 @@ const NewCardPopup = () => {
               <Calendar
                 selected={task.date}
                 setSelected={(date) => setTask({ ...task, date })}
+                isEdit={true}
               />
             </S.PopNewCardWrap>
             <S.Categories>
