@@ -21,6 +21,7 @@ const BrowsePopup = () => {
     description: "",
     date: "",
   });
+
   useEffect(() => {
     if (tasks) {
       const task = tasks.find((task) => task._id === id);
@@ -34,7 +35,7 @@ const BrowsePopup = () => {
           description: task.description,
           date: task.date,
         });
-        setSelected(task.date);
+        setSelected(new Date(task.date));
       }
     }
   }, [id, tasks, navigate]);
@@ -52,7 +53,7 @@ const BrowsePopup = () => {
 
     const taskData = {
       ...editedTask,
-      date: selected,
+      date: selected.toISOString(), // Ensure date is in ISO string format
       token: user.token,
       id: id,
     };
@@ -75,13 +76,11 @@ const BrowsePopup = () => {
     try {
       await deleteTask({ id, token: user.token });
 
-      // После успешного удаления задачи обновляем состояние задач в Main
       setTasks((prevTasks) => prevTasks.filter((task) => task._id !== id));
 
-      // Перенаправляем пользователя на главную страницу
-      navigate(RoutesPath.HOME); // Можно заменить на нужный вам маршрут
+      navigate(RoutesPath.HOME);
     } catch (error) {
-      console.error(error); // Выводим ошибку в консоль
+      console.error(error);
     }
   };
 
@@ -197,12 +196,6 @@ const BrowsePopup = () => {
                       Удалить задачу
                     </button>
                   </div>
-                  {/* <button
-                    className="btn-edit__close _btn-bg _hover01"
-                    onClick={() => setIsEdit(false)}
-                  >
-                    Закрыть
-                  </button> */}
                 </div>
               )}
               <button className="btn-browse__close _btn-bg _hover01">
