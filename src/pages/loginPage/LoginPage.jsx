@@ -70,7 +70,7 @@ const LoginPage = () => {
                 placeholder="Эл. почта"
                 value={formValues.email}
                 onChange={onInputChange}
-                error={fieldErrors.email}
+                $error={fieldErrors.email}
               />
               <S.BlockInput
                 type="password"
@@ -79,7 +79,7 @@ const LoginPage = () => {
                 placeholder="Пароль"
                 value={formValues.password}
                 onChange={onInputChange}
-                error={fieldErrors.password}
+                $error={fieldErrors.password}
               />
               {error && <S.BlockError>{error}</S.BlockError>}
               <S.BlockBtnEnter

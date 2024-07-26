@@ -77,7 +77,7 @@ const RegisterPage = () => {
                 name="name"
                 id="first-name"
                 placeholder="Имя"
-                error={fieldErrors.name}
+                $error={fieldErrors.name}
               />
               <S.BlockInput
                 type="email"
@@ -86,7 +86,7 @@ const RegisterPage = () => {
                 name="email"
                 id="formlogin"
                 placeholder="Эл. почта"
-                error={fieldErrors.email}
+                $error={fieldErrors.email}
               />
               <S.BlockInput
                 type="password"
@@ -95,7 +95,7 @@ const RegisterPage = () => {
                 name="password"
                 id="formpassword"
                 placeholder="Пароль"
-                error={fieldErrors.password}
+                $error={fieldErrors.password}
               />
               <S.BlockBtnEnter
                 id="btnEnter"

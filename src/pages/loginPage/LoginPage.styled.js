@@ -75,8 +75,8 @@ export const BlockInput = styled.input`
     color: #94a6be;
   }
 
-  ${({ error }) =>
-    error &&
+  ${({ $error }) =>
+    $error &&
     css`
       border-color: red;
     `}
