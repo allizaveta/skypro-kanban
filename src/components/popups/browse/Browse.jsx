@@ -15,6 +15,7 @@ const BrowsePopup = () => {
   const { tasks, setTasks } = useTasks();
   const [selected, setSelected] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
+  const [error, setError] = useState(null);
   const [editedTask, setEditedTask] = useState({
     title: "",
     topic: "",
@@ -55,7 +56,10 @@ const BrowsePopup = () => {
 
   const editCard = async (e) => {
     e.preventDefault();
-
+    if (!editedTask.description.trim()) {
+      setError("Описание задачи не может быть пустым.");
+      return;
+    }
     const taskData = {
       ...editedTask,
       date: selected.toISOString(),
@@ -174,6 +178,7 @@ const BrowsePopup = () => {
               </S.CategoriesTheme>
             </div>
             <div className="pop-browse__btn-browse">
+              {error && <p className="error-message">{error}</p>}
               {!isEdit ? (
                 <div className="btn-group">
                   <button
