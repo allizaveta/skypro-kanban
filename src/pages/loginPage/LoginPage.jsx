@@ -44,7 +44,6 @@ const LoginPage = () => {
         login: formValues.email,
         password: formValues.password,
       });
-      console.log("Login response", response);
       isLoginUser(response.user);
     } catch (error) {
       console.error(error.message);

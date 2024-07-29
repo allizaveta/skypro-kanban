@@ -19,7 +19,6 @@ const MainPage = () => {
     const fetchData = async () => {
       try {
         const response = await getTasks(user.token);
-        console.log("tasks:", response);
         setTasks(response.tasks);
         setLoading(false);
       } catch (error) {

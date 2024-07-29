@@ -180,14 +180,19 @@ export const StatusTheme = styled.div`
   border: 0.7px solid rgba(148, 166, 190, 0.4);
   color: ${(props) => (props.$active ? "#FFFFFF" : "#94A6BE")};
   background-color: ${(props) => (props.$active ? "#94A6BE" : "#FFFFFF")};
-  padding: 11px 14px 10px;
+  padding: 10px 17px;
   margin-right: 7px;
   margin-bottom: 7px;
+  width: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   p {
     font-size: 14px;
     line-height: 1;
     letter-spacing: -0.14px;
+    text-align: center;
   }
 `;
 

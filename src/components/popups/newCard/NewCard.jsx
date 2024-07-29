@@ -49,7 +49,6 @@ const NewCardPopup = () => {
       setTasks(response.tasks);
       navigate(RoutesPath.HOME);
     } catch (error) {
-      console.log(error.message);
       setError("Что-то пошло не так. Попробуйте еще раз!");
     }
   };

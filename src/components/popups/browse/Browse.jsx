@@ -6,6 +6,7 @@ import { useUser } from "../../hooks/useUser";
 import { useTasks } from "../../hooks/useTasks";
 import { useState, useEffect } from "react";
 import { deleteTask, updateTask } from "../../../api";
+import { getTopicColor, topicStyles } from "../../../data";
 
 const BrowsePopup = () => {
   const { id } = useParams();
@@ -93,6 +94,8 @@ const BrowsePopup = () => {
     return null;
   }
 
+  const topicColor = getTopicColor(editedTask.topic);
+
   return (
     <S.PopBrowse id="popBrowse">
       <S.PopBrowseContainer>
@@ -100,14 +103,17 @@ const BrowsePopup = () => {
           <div className="pop-browse__content">
             <S.PopBrowseTopBLock>
               <S.PopBrowseTtl>{editedTask.title}</S.PopBrowseTtl>
-              <S.CategoriesTheme className="theme-top _orange _active-category">
+              <S.CategoriesTheme
+                className={`theme-top ${topicColor} _active-category`}
+                style={topicStyles[topicColor]}
+              >
                 <p className="_orange">{editedTask.topic}</p>
               </S.CategoriesTheme>
             </S.PopBrowseTopBLock>
             <S.Status>
               <S.StatusP className="subttl">Статус</S.StatusP>
               {!isEdit ? (
-                <S.StatusTheme $active={editedTask.status === ""}>
+                <S.StatusTheme $active={true}>
                   <p>{editedTask.status || "Без статуса"}</p>
                 </S.StatusTheme>
               ) : (
@@ -154,6 +160,7 @@ const BrowsePopup = () => {
                   />
                 </S.FormBrowseBlock>
               </S.PopBrowseForm>
+
               <Calendar
                 selected={selected}
                 setSelected={setSelected}

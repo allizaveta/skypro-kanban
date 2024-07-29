@@ -22,11 +22,6 @@ export const Header = () => {
               <img src="images/logo.png" alt="logo" />
             </a>
           </S.HeaderLogo>
-          {/* <S.HeaderLogo>
-            <a href="" target="_self">
-              <img src="images/logo_dark.png" alt="logo" />
-            </a>
-          </S.HeaderLogo> */}
           <S.HeaderNav>
             <S.HeaderBtnMainNew id="btnMainNew">
               <Link to={RoutesPath.NEWCARD}>Создать новую задачу</Link>

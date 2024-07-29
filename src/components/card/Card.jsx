@@ -2,8 +2,10 @@ import * as S from "./Card.styled";
 import { topicHeader } from "../../data";
 import { Link } from "react-router-dom";
 import RoutesPath from "../../RoutesPath";
+import { format } from "date-fns";
 
 const Card = ({ _id, topic, title, date }) => {
+  const formattedDate = format(new Date(date), "dd.MM.yy");
   return (
     <S.CardsItem>
       <S.CardsCard>
@@ -52,7 +54,7 @@ const Card = ({ _id, topic, title, date }) => {
                 </clipPath>
               </defs>
             </svg>
-            <p>{date}</p>
+            <p>{formattedDate}</p>
           </S.CardDate>
         </S.CardContent>
       </S.CardsCard>

@@ -50,7 +50,6 @@ const RegisterPage = () => {
         login: formValues.email,
         password: formValues.password,
       });
-      console.log("signup response", response);
 
       navigate(RoutesPath.LOGIN);
     } catch (error) {
