@@ -48,5 +48,6 @@ export const StyledDayPicker = styled(DayPicker)`
 
   .rdp-day_outside {
     color: #94a6be;
+    
   }
 `;

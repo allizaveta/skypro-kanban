@@ -220,7 +220,9 @@ const BrowsePopup = () => {
                 </div>
               )}
               <button className="btn-browse__close _btn-bg _hover01">
-                <Link to={RoutesPath.HOME}>Закрыть</Link>
+                <Link to={RoutesPath.HOME}>
+                  Закрыть<div className=""></div>
+                </Link>
               </button>
             </div>
           </div>

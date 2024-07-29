@@ -17,7 +17,7 @@ const Calendar = ({ selected, setSelected, isEdit }) => {
         />
         {!selected && (
           <S.CalendarTitleBottom>
-            Выберите срок исполнения
+            Выберите срок исполнения.
           </S.CalendarTitleBottom>
         )}
         {selected && (
