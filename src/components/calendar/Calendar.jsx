@@ -8,6 +8,7 @@ const Calendar = ({ selected, setSelected, isEdit }) => {
     <>
       <S.Calendar>
         <S.CalendarTitle>Даты</S.CalendarTitle>
+        <div>
         <S.StyledDayPicker
           mode="single"
           selected={selected}
@@ -15,6 +16,7 @@ const Calendar = ({ selected, setSelected, isEdit }) => {
           locale={ru}
           disabled={!isEdit}
         />
+        </div>
         {!selected && (
           <S.CalendarTitleBottom>
             Выберите срок исполнения.

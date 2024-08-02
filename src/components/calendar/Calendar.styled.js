@@ -6,6 +6,10 @@ export const Calendar = styled.div`
   margin-bottom: 20px;
 `;
 
+export const CalendarContainer = styled.div`
+  margin-bottom: 35px;
+`;
+
 export const CalendarTitle = styled.p`
   margin-bottom: 14px;
   padding-left: 21px;
@@ -21,6 +25,7 @@ export const CalendarTitleBottom = styled.p`
   font-weight: 400;
   line-height: 12px;
   padding-left: 21px;
+  margin-top: 15px;
 `;
 
 export const FormatDate = styled.span`
@@ -30,16 +35,28 @@ export const FormatDate = styled.span`
 `;
 
 export const StyledDayPicker = styled(DayPicker)`
+  width: 168px;
+  height: 172px;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 7px;
+  margin-bottom: 15px;
+
   .rdp-day {
     color: #94a6be;
     font-size: 14px;
     font-weight: 400;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .rdp-day_selected {
     background-color: #94a6be;
     color: #fff;
-    border-radius: 50%;
   }
 
   .rdp-day:hover:not(.rdp-day_selected) {
@@ -48,6 +65,34 @@ export const StyledDayPicker = styled(DayPicker)`
 
   .rdp-day_outside {
     color: #94a6be;
-    
+  }
+
+  .rdp-head {
+    display: contents;
+    color: #94a6be;
+    font-size: 12px;
+    text-align: center;
+    padding-bottom: 7px;
+  }
+
+  .rdp-navigation {
+    background-color: #94a6be;
+    color: #fff;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .rdp-navigation_prev,
+  .rdp-navigation_next {
+    line-height: 1;
+  }
+
+  .rdp-month {
+    color: #94a6be;
   }
 `;

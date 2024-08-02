@@ -195,4 +195,3 @@ export const StatusTheme = styled.div`
     text-align: center;
   }
 `;
-
