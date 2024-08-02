@@ -88,7 +88,7 @@ export const PopNewCardClose = styled(Link)`
 export const PopNewCardWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  gap: 30px;
 
   @media screen and (max-width: ${breakpoints.lg}px) {
     display: block;

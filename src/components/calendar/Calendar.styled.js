@@ -3,7 +3,14 @@ import styled from "styled-components";
 import "react-day-picker/dist/style.css";
 
 export const Calendar = styled.div`
-  margin-bottom: 20px;
+  display: flex;
+    width: 168px;
+    height: 228px;
+    gap: 20px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
 `;
 
 export const CalendarContainer = styled.div`
@@ -25,7 +32,7 @@ export const CalendarTitleBottom = styled.p`
   font-weight: 400;
   line-height: 12px;
   padding-left: 21px;
-  margin-top: 15px;
+  margin-top: 80px;
 `;
 
 export const FormatDate = styled.span`
