@@ -53,9 +53,11 @@
 .pop-browse__btn-browse,
 .pop-browse__btn-edit {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+    margin-top: 18px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+
 }
 .pop-browse__btn-browse button,
 .pop-browse__btn-edit button {
