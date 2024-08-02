@@ -6,7 +6,6 @@ export const Calendar = styled.div`
   display: flex;
     width: 168px;
     height: 228px;
-    gap: 20px;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -18,7 +17,6 @@ export const CalendarContainer = styled.div`
 `;
 
 export const CalendarTitle = styled.p`
-  margin-bottom: 14px;
   padding-left: 21px;
   color: #000;
   font-size: 14px;
@@ -32,7 +30,7 @@ export const CalendarTitleBottom = styled.p`
   font-weight: 400;
   line-height: 12px;
   padding-left: 21px;
-  margin-top: 80px;
+  margin-top: 50px;
 `;
 
 export const FormatDate = styled.span`
@@ -42,12 +40,15 @@ export const FormatDate = styled.span`
 `;
 
 export const StyledDayPicker = styled(DayPicker)`
-  width: 168px;
+  width: 115%;
   height: 172px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 7px;
+  gap: 10px;
   margin-bottom: 15px;
+  transform: scale(0.8);
+  transform-origin: top left;
+  box-sizing: border-box;
 
   .rdp-day {
     color: #94a6be;
