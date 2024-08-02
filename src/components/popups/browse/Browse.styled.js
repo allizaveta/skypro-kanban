@@ -64,10 +64,10 @@ export const PopBrowseContent = styled.div`
 export const PopBrowseTopBLock = styled.div`
   display: flex;
     gap: 30px;
-    align-items: flex-start;
     flex-wrap: nowrap;
     flex-direction: row;
-  margin-bottom: 18px;
+    margin-bottom: 18px;
+    justify-content: space-between;
 `;
 
 export const PopBrowseTtl = styled.h3`
