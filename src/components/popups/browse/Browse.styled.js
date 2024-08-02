@@ -38,9 +38,9 @@ export const PopBrowseBlock = styled.div`
   display: block;
   margin: 0 auto;
   background-color: #ffffff;
-  max-width: 630px;
+  max-width: 730px;
   width: 100%;
-  padding: 40px 30px 38px;
+  padding: 40px 30px 90px;
   border-radius: 10px;
   border: 0.7px solid #d4dbe5;
   position: relative;
@@ -63,8 +63,10 @@ export const PopBrowseContent = styled.div`
 
 export const PopBrowseTopBLock = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+    gap: 30px;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
   margin-bottom: 18px;
 `;
 
@@ -78,7 +80,7 @@ export const PopBrowseTtl = styled.h3`
 export const PopBrowseWrap = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  gap:30px;
   @media screen and (max-width: 660px) {
     display: block;
   }
@@ -150,7 +152,6 @@ export const CategoriesP = styled.p`
 
 export const CategoriesTheme = styled.div`
   display: inline-block;
-  width: auto;
   height: 30px;
   padding: 8px 20px;
   border-radius: 24px;
@@ -183,7 +184,8 @@ export const StatusTheme = styled.div`
   padding: 10px 17px;
   margin-right: 7px;
   margin-bottom: 7px;
-  width: 136px;
+  max-width: 136px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
